@@ -1,11 +1,11 @@
 {{$backend.host = options('backend.host')}}
 {{$frontend.host = options('frontend.host')}}{{literal}}
 //{{RAX}}
-import { input } from "/Application/Ollama/Module/Input.js";
-import { directory } from "/Application/Ollama/Module/Directory.js";
-import { file } from "/Application/Ollama/Module/File.js";
-import { head } from "/Application/Ollama/Module/Head.js";
-import { menu } from "/Application/Ollama/Module/Menu.js";
+import { input } from "/Application/Ollama/Gui/Module/Input.js";
+import { directory } from "/Application/Ollama/Gui/Module/Directory.js";
+import { file } from "/Application/Ollama/Gui/Module/File.js";
+import { head } from "/Application/Ollama/Gui/Module/Head.js";
+import { menu } from "/Application/Ollama/Gui/Module/Menu.js";
 import { root } from "/Module/Web.js";
 import { taskbar } from "/Application/Desktop/Module/Taskbar.js";
 import { task } from "/Application/Desktop/Module/Task.js";
@@ -15,8 +15,8 @@ import { version } from "/Module/Priya.js";
 import user from "/Module/User.js";
 require(
 [
-root() + 'Application/Ollama/Css/Indent.css?' + version(),
-root() + 'Application/Ollama/Css/Ollama.css?' + version(),
+root() + 'Application/Ollama/Gui/Css/Indent.css?' + version(),
+root() + 'Application/Ollama/Gui/Css/Ollama.css?' + version(),
 root() + 'Dialog/Css/Dialog.css?' + version(),
 root() + 'Js/Dropzone/5.9.2/min/dropzone.min.css?' + version(),
 root() + 'Js/Dropzone/5.9.2/min/dropzone.min.js?' + version(),
