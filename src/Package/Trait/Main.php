@@ -22,7 +22,7 @@ use Raxon\Node\Module\Node;
 use Exception;
 
 trait Main {
-    const NAME = 'OllamaGui';
+    const NAME = 'Ollama/Gui';
     const ROUTE_NAME = 'application-ollama-manager';
     /**
      * @throws DirectoryCreateException
