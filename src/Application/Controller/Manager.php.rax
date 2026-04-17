@@ -1,6 +1,6 @@
 {{$options = options()}}
 <?php
-namespace Domain\{{php.namespace.host($options.frontend.host)}}\Application\OllamaGui\Controller;
+namespace Domain\{{php.namespace.host($options.frontend.host)}}\Application\Ollama\Gui\Controller;
 
 use Raxon\App;
 use Raxon\Config;
