@@ -5,7 +5,7 @@
         "#class": "System.Route",
         "name": "raxon-org-cli-application-ollama-gui",
         "path": "raxon\/ollama-gui",
-        "controller": "Package:Raxon:OllamaGui:Controller:Cli:run",
+        "controller": "Package:Raxon:Ollama:Gui:Controller:Cli:run",
         "priority": 1001,
         "request": {
           "language": "en"
