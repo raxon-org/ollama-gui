@@ -299,6 +299,7 @@ input.init = (section_id, languages = {}) => {
                     }
                 }
             ];
+            tools = [];
             data = {                
                 "entity": {
                     "endpoint": endpoint,
