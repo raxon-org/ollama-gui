@@ -1,8 +1,8 @@
-import { directory } from "/Application/Ollama/Module/Directory.js";
+import { directory } from "/Application/Ollama/Gui/Module/Directory.js";
 import { exception } from "/Module/Exception.js";
-import { file } from "/Application/Ollama/Module/File.js";
-import { history } from "/Application/Ollama/Module/History.js";
-import { microphone } from "/Application/Ollama/Module/Microphone.js";
+import { file } from "/Application/Ollama/Gui/Module/File.js";
+import { history } from "/Application/Ollama/Gui/Module/History.js";
+import { microphone } from "/Application/Ollama/Gui/Module/Microphone.js";
 import { getSection } from "/Module/Section.js";
 import { taskbar } from "/Application/Desktop/Module/Taskbar.js";
 import create from "/Module/Create.js";
