@@ -1,5 +1,5 @@
 //import { create } from "/Module/Create/Js/Create.js";
-import { file } from "/Application/Ollama/Module/File.js";
+import { file } from "/Application/Ollama/Gui/Module/File.js";
 import { getSection } from "/Module/Section.js";
 //import { taskbar } from "/Navigation/Module/Js/Taskbar.js";
 //import { user } from "/Module/User/Js/User.js";

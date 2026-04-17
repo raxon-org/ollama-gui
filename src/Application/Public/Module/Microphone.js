@@ -1,5 +1,5 @@
 import { getSection } from "/Module/Section.js";
-import { file } from "/Application/Ollama/Module/File.js";
+import { file } from "/Application/Ollama/Gui/Module/File.js";
 import { uuid } from "/Module/Web.js";
 import user from "/Module/User.js";
 // import { pipeline, env } from '/Xenova/transformers@2.14.0.js';

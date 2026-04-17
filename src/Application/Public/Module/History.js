@@ -1,5 +1,5 @@
 import { getSection } from "/Module/Section.js";
-import { file } from "/Application/Ollama/Module/File.js";
+import { file } from "/Application/Ollama/Gui/Module/File.js";
 import create from "/Module/Create.js";
 import { replace } from "/Module/String.js";
 import { dialog } from "/Dialog/Module/Dialog.js";
