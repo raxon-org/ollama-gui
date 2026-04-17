@@ -1,0 +1,545 @@
+section[name="application-ollama-manager"] .dialog {
+    width: calc(100% - 250px);
+    min-width: 640px;
+    height: calc(100% - 100px);
+    left: 200px;
+    top: 50px;
+}
+
+section[name="application-ollama-manager"] {
+}
+
+section[name="application-ollama-manager"] .menu-application-ollama-manager {
+    background: rgba(225, 225, 225, 1);
+    border-top: 1px solid rgba(200, 200, 200, 1);
+    height: 19px;
+    width: 100%;
+    overflow: hidden;
+    cursor: default;
+}
+
+section[name="application-ollama-manager"] .menu-application-ollama-manager ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+section[name="application-ollama-manager"] .menu-application-ollama-manager li {
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-right: 1px solid rgba(200, 200, 200, 1);
+}
+
+section[name="application-ollama-manager"] .menu-application-ollama-manager li.active {
+    background: rgba(255, 124, 13, 1);
+}
+
+section[name="application-ollama-manager"] .menu-application-ollama-manager li .close:hover {
+    color: rgba(255, 0, 0, 1);
+}
+
+section[name="application-ollama-manager"] .menu-application-ollama-manager li .has-changed {
+    margin-left: 10px;
+}
+
+section[name="application-ollama-manager"] .body {
+    height: calc(100% - 100px);
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background: rgba(0, 33, 177, 0.4);
+}
+
+section[name="application-ollama-manager"] .body .loading {
+    text-align: center;
+    height: 150px;
+    margin: 75px;
+    padding: 0;
+}
+
+section[name="application-ollama-manager"] .body .loading i {
+    font-size: 256px;
+    color: rgba(255, 124, 13, 1);
+}
+
+section[name="application-ollama-manager"] .body .loading span {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+section[name="application-ollama-manager"] .body .history {
+    width: 300px;
+    height: calc(100%);
+    overflow: auto;
+    background: rgba(255, 255, 255, 0);
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+section[name="application-ollama-manager"] .body .history ul {
+    list-style-type: none;
+    margin: 10px;
+    padding: 0;
+    background: transparent;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    overflow-y: auto;
+}
+
+section[name="application-ollama-manager"] .body .history ul p {
+    margin: 0;
+    clear: both;
+    word-wrap: break-word;
+}
+
+section[name="application-ollama-manager"] .body .history p {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+section[name="application-ollama-manager"] .body .history li {
+    width: calc(100% - 22px);
+    border: 1px solid rgba(255, 255, 255, 1);
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+
+section[name="application-ollama-manager"] .body .history li.active {
+    background: rgba(200, 226, 230, 1);
+    background: rgba(39, 170, 255, 0.3);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 33, 177, 0.4));
+    border: 1px solid rgba(39, 170, 255, 1);
+    box-shadow: 2px 2px rgba(39, 170, 255, 0.5);
+
+}
+
+section[name="application-ollama-manager"] .body .history .name {
+    padding: 5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-right: 5px;
+    color: rgba(255, 255, 255, 0.8);
+
+    float: left;
+}
+
+section[name="application-ollama-manager"] .body .history li.active .name {
+    color: rgba(255, 255, 255, 1);
+}
+
+section[name="application-ollama-manager"] .body .history .delete {
+    color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 0, 0, 0.5);
+    margin: 5px;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 20px;
+    float: right;
+}
+
+section[name="application-ollama-manager"] .body .history .delete:hover {
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 0, 0, 0.9);
+}
+
+section[name="application-ollama-manager"] .body .history .name form {
+    display: inline;
+}
+
+section[name="application-ollama-manager"] .body .history .name input {
+    margin: 0;
+    border: 1px solid rgba(200, 226, 230, 1);
+    background: rgba(200, 226, 230, 1);
+}
+
+section[name="application-ollama-manager"] .body .history .name.error {
+    border: 1px solid rgba(255, 0, 0, 1);
+}
+
+section[name="application-ollama-manager"] .body .history .has-sub-dir {
+    display: inline-block;
+    width: 20px;
+}
+
+section[name="application-ollama-manager"] .body .history .icon {
+    margin-right: 5px;
+}
+
+section[name="application-ollama-manager"] .body .options {
+    width: 450px;
+    padding: 10px;
+    height: calc(100% - 20px);    
+    background: rgba(75, 65, 65, 0.8);
+    background: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    top: 0;
+    right: 0px;
+    color: rgba(39, 170, 255, 1);
+    border: 1px solid rgba(39, 170, 255, 1);
+}
+
+section[name="application-ollama-manager"] .body .options .fa-window-close {
+    color: rgba(200, 0, 0, 1);
+    font-size: 20px;
+}
+
+section[name="application-ollama-manager"] .body .input {
+    width: calc(100% - 300px);
+    height: 120px;
+    position: absolute;
+    top: calc(100% - 120px);
+    left: 300px;
+}
+
+section[name="application-ollama-manager"] .body .input textarea[name='prompt'] {
+    border: 1px solid rgba(39, 170, 255, 1);
+    background: rgba(0, 0, 0, 0.5);
+    width: 800px;
+    height: 105px;
+    border-radius: 25px;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+    color: rgba(255, 255, 255, 1);
+    margin: 0;
+    padding: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+section[name="application-ollama-manager"] .body .input textarea[name='prompt']:focus-visible {
+    outline: none;
+    box-shadow: 2px 2px rgba(39, 170, 255, 0.5);
+}
+
+section[name="application-ollama-manager"] .body .input button[name="submit"] {
+    border: 1px solid rgba(39, 170, 255, 1);
+    background: rgba(0, 0, 0, 0.5);
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
+    border-radius: 25px;
+    box-shadow: 2px 2px rgba(39, 170, 255, 0.5);
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+    color: rgba(255, 255, 255, 1);
+    position: relative;
+    left: 25px;
+    top: -75px;
+}
+
+section[name="application-ollama-manager"] .body .input button[name="submit"]:hover {
+    color: rgba(39, 170, 255, 1);
+    box-shadow: 2px 2px rgba(39, 170, 255, 0.5);
+}
+
+section[name="application-ollama-manager"] .body .input button[name="options"] {
+    border: 1px solid rgba(39, 170, 255, 1);
+    background: rgba(0, 0, 0, 0.5);
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
+    border-radius: 25px;
+    box-shadow: 2px 2px rgba(39, 170, 255, 0.5);
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+    color: rgba(255, 255, 255, 1);
+    position: relative;
+    left: 65px;
+    top: -55px;
+}
+
+section[name="application-ollama-manager"] .body .input button[name="options"]:hover {
+    color: rgba(39, 170, 255, 1);
+    box-shadow: 2px 2px rgba(39, 170, 255, 0.5);
+}
+
+section[name="application-ollama-manager"] .body .input button[name="microphone"] {
+    border: 1px solid rgba(39, 170, 255, 1);
+    background: rgba(0, 0, 0, 0.5);
+    width: 40px;
+    height: 40px;
+    margin-left: 5px;
+    margin-top: 5px;
+    border-radius: 25px;
+    box-shadow: 2px 2px rgba(39, 170, 255, 0.5);
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+    color: rgba(255, 255, 255, 1);
+    position: relative;
+    left: -20px;
+    top: -25px;
+}
+
+section[name="application-ollama-manager"] .body .input button[name="microphone"]:hover {
+    color: rgba(39, 170, 255, 1);
+    box-shadow: 2px 2px rgba(39, 170, 255, 0.5);
+}
+
+section[name="application-ollama-manager"] .body .input button[name="clear"] {
+    border: 1px solid rgba(39, 170, 255, 1);
+    background: rgba(0, 0, 0, 0.5);
+    width: 40px;
+    height: 40px;
+    margin-left: 5px;
+    margin-top: 5px;
+    border-radius: 25px;
+    box-shadow: 2px 2px rgba(39, 170, 255, 0.5);
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+    color: rgba(255, 255, 255, 1);
+    position: relative;
+    left: 0px;
+    top: -25px;
+}
+
+section[name="application-ollama-manager"] .body .input button[name="clear"]:hover {
+    color: rgba(39, 170, 255, 1);
+    box-shadow: 2px 2px rgba(39, 170, 255, 0.5);
+}
+
+section[name="application-ollama-manager"] .body .input button[name="abort"] {
+    border: 1px solid rgba(39, 170, 255, 1);
+    background: rgba(0, 0, 0, 0.5);
+    width: 40px;
+    height: 40px;
+    margin-left: 5px;
+    margin-top: 5px;
+    border-radius: 25px;
+    box-shadow: 2px 2px rgba(39, 170, 255, 0.5);
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+    color: rgba(255, 255, 255, 1);
+    position: relative;
+    left: 25px;
+    top: -75px;
+}
+
+section[name="application-ollama-manager"] .body .input button[name="abort"]:hover {
+    color: rgba(39, 170, 255, 1);
+    box-shadow: 2px 2px rgba(39, 170, 255, 0.5);
+}
+
+section[name="application-ollama-manager"] .body .input select[name="model"] {
+    border: 1px solid rgba(39, 170, 255, 1);
+    background: rgba(0, 0, 0, 0.5);
+    width: 200px;
+    height: 40px;
+    margin-top: 5px;
+    border-radius: 25px;
+    box-shadow: 2px 2px rgba(39, 170, 255, 0.5);
+    color: rgba(255, 255, 255, 1);
+    padding: 5px;
+    position: relative;
+    top: -80px;
+    left: 45px;
+}
+
+section[name="application-ollama-manager"] .body .recorder {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 340px;    
+    height: calc(100% - 125px);
+    border-left: 1px solid rgba(39, 170, 255, 1);
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+section[name="application-ollama-manager"] .body .recorder .buttons,
+section[name="application-ollama-manager"] .body .recorder article {
+    padding: 10px;
+}
+
+section[name="application-ollama-manager"] .body .content {
+    width: calc(100% - 340px);
+    height: calc(100% - 165px);
+    overflow: hidden;
+    overflow-y: auto;    
+    position: absolute;
+    left: 300px;
+    top: 0;
+    background: rgba(255, 255, 255, 1);
+    border-bottom-left-radius: 25px;
+    border: 0;
+    padding: 20px;
+}
+
+section[name="application-ollama-manager"] .body .content hr {
+    border: 0;
+    border-bottom: 1px solid rgba(39, 170, 255, 1);
+}
+
+section[name="application-ollama-manager"] .body .content article pre {
+    margin: 0;
+    padding: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 100%;
+    overflow: auto;    
+}
+
+section[name="application-ollama-manager"] .body .content article span.prompt {
+    display: inline-block;
+    margin: 0;
+    padding: 5px;
+    background: rgba(225, 225, 225, 1);
+    background: rgba(39, 170, 255, 0.2);
+    color: rgba(255, 33, 177, 0.8);
+    background: rgba(255, 33, 177, 0.6);
+    color: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(0, 0, 0, 1);
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+section[name="application-ollama-manager"] .body .content article pre p, 
+section[name="application-ollama-manager"] .body .content article pre ul, 
+section[name="application-ollama-manager"] .body .content article pre ol,
+section[name="application-ollama-manager"] .body .content article pre table,
+section[name="application-ollama-manager"] .body .content article pre h1,
+section[name="application-ollama-manager"] .body .content article pre h2,
+section[name="application-ollama-manager"] .body .content article pre h3,
+section[name="application-ollama-manager"] .body .content article pre h4,
+section[name="application-ollama-manager"] .body .content article pre h5,
+section[name="application-ollama-manager"] .body .content article pre h6 {
+    margin: 0;
+    padding: 0;        
+    padding: 5px;    
+}
+
+section[name="application-ollama-manager"] .body .content .thinking {
+    border: 1px solid rgba(39, 170, 255, 1);
+    background: rgba(0, 0, 0, 0.1);    
+    border-radius: 25px;
+    box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 1);
+    margin: 0;
+    padding: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+section[name="application-ollama-manager"] .body .content .thinking * {
+    border: 0;
+    background: transparent;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.0);
+}
+
+section[name="application-ollama-manager"] .body .content .thinking pre {
+    overflow: auto;
+}
+
+section[name="application-ollama-manager"] .body .content.has-upload {
+    height: calc(100% - 280px);
+}
+
+section[name="application-ollama-manager"] .body .content thead {
+    font-weight: normal;
+    font-size: 12px;
+}
+
+section[name="application-ollama-manager"] .body .content thead th {
+    background: rgba(235, 235, 235, 1);
+    position: sticky;
+    top: 0;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+}
+section[name="application-ollama-manager"] .body .content table td {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+section[name="application-ollama-manager"] .body .content table td.icon {
+    width: 25px;
+    text-align: center;
+}
+
+section[name="application-ollama-manager"] .body .content table tr.selected {
+    background: rgba(200, 226, 230, 1);
+}
+
+section[name="application-ollama-manager"] .body .upload {
+    width: calc(100% - 300px);
+    height: 250px;
+    overflow: auto;
+    background: linear-gradient(rgba(255, 124, 13, 0), rgba(255, 124, 13, 1));
+    background: linear-gradient(rgba(255, 124, 13, 0.2), rgba(55, 25, 63, 1));
+    float: left;
+    padding: 5px;
+    border: 0;
+    border-top: 2px solid rgba(255, 124, 13, 1);
+}
+
+section[name="application-ollama-manager"] .footer .speed-size {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-right: 1px solid rgba(200, 200, 200, 1);
+    display: inline-block;
+    height: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    float: left;
+}
+
+section[name="application-ollama-manager"] .footer .speed-amount {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-right: 1px solid rgba(200, 200, 200, 1);
+    display: inline-block;
+    height: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    float: left;
+}
+
+section[name="application-ollama-manager"] .footer .size {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-right: 1px solid rgba(200, 200, 200, 1);
+    display: inline-block;
+    height: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    float: left;
+}
+
+section[name="application-ollama-manager"] .footer .amount {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-right: 1px solid rgba(200, 200, 200, 1);
+    display: inline-block;
+    height: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    float: left;
+}
+
+section[name="application-ollama-manager"] .footer .queue {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-right: 1px solid rgba(200, 200, 200, 1);
+    display: inline-block;
+    height: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    float: left;
+}
+
+section[name="application-ollama-manager"] .footer .sse-memory {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-right: 1px solid rgba(200, 200, 200, 1);
+    display: inline-block;
+    height: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    float: left;
+}
+
+section[name="application-ollama-manager"] .footer .duration {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-right: 1px solid rgba(200, 200, 200, 1);
+    display: inline-block;
+    height: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    float: left;
+}

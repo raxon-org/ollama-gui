@@ -1,0 +1,89 @@
+{
+    "System": {
+        "Route": [
+            {
+                "name": "application-ollama-manager",
+                "path": "\/Application\/OllamaGui\/",
+                "host": "{{options('frontend.host')}}",
+                "controller": "Domain:{{app.controller.host(options('frontend.host'))}}:Application:OllamaGui:Controller:Manager:main",
+                "priority": 3001,
+                "method": [
+                    "GET",
+                    "POST"
+                ]
+            },
+            {
+                "name": "application-ollama-manager-address-bar",
+                "path": "\/Application\/OllamaGui\/AddressBar\/",
+                "host": "{{options('frontend.host')}}",
+                "controller": "Domain:{{app.controller.host(options('frontend.host'))}}:Application:OllamaGui:Controller:Manager:address.bar",
+                "priority": 3002,
+                "method": [
+                    "GET",
+                    "POST"
+                ]
+            },
+            {
+                "name": "application-ollama-manager-list-directory",
+                "path": "\/Application\/OllamaGui\/List\/Directory\/",
+                "host": "{{options('frontend.host')}}",
+                "controller": "Domain:{{app.controller.host(options('frontend.host'))}}:Application:OllamaGui:Controller:Manager:list.directory",
+                "priority": 3003,
+                "method": [
+                    "GET",
+                    "POST"
+                ]
+            },
+            {
+                "name": "application-ollama-manager-list-file",
+                "path": "\/Application\/OllamaGui\/List\/File\/",
+                "host": "{{options('frontend.host')}}",
+                "controller": "Domain:{{app.controller.host(options('frontend.host'))}}:Application:OllamaGui:Controller:Manager:list.file",
+                "priority": 3004,
+                "method": [
+                    "GET",
+                    "POST"
+                ]
+            },
+            {
+                "name": "application-ollama-manager-overview",
+                "path": "\/Application\/OllamaGui\/Overview\/",
+                "host": "{{options('frontend.host')}}",
+                "controller": "Domain:{{app.controller.host(options('frontend.host'))}}:Application:OllamaGui:Controller:Manager:overview",
+                "priority": 3005,
+                "method": [
+                    "GET",
+                    "POST"
+                ]
+            },
+            {
+                "name": "application-ollama-manager-list-data",
+                "path": "\/Application\/OllamaGui\/List\/Data\/",
+                "host": "{{options('frontend.host')}}",
+                "controller": "Domain:{{app.controller.host(options('frontend.host'))}}:Application:OllamaGUi:Controller:Manager:list.data",
+                "priority": 3006,
+                "method": [
+                    "GET",
+                    "POST"
+                ]
+            },
+            {
+                "name": "application-ollama-manager-icon",
+                "url": "\/Application\/OllamaGui\/Icon\/Icon.png",
+                "host": "{{options('frontend.host')}}",
+                "priority": 3007
+            },
+            {
+                "name": "application-ollama-sse",
+                "path": "\/Application\/OllamaGui\/Sse\/",
+                "host": "{{options('frontend.host')}}",
+                "controller": "Domain:{{app.controller.host(options('frontend.host'))}}:Application:OllamaGui:Controller:Manager:sse",
+                "priority": 3008,
+                "method": [
+                    "GET",
+                    "POST"
+                ]
+            }
+        ]
+    }
+}

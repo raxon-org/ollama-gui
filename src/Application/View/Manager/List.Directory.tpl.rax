@@ -1,0 +1,28 @@
+{{$frontend.host = options('frontend.host')}}{{$backend.host = options('backend.host')}}{{literal}}
+{{RAX}}
+{{require(config('controller.dir.view') + config('controller.title') + '/Init.tpl')}}
+{{script('module')}}
+import { directory } from "/Application/Ollama/Module/Directory.js";
+console.log('yes1');
+directory.open();
+{{/script}}
+{{$request = request()}}
+{{if(is.array($request.nodeList))}}
+{{$request.method = 'replace'}}
+{{$request.target = html.target.create('section', ['id' => $id])}}
+{{$request.target += ' .tree'}}
+{{$indent = (int) $request.indent}}
+{{$li.data.indent = $indent + 1}}
+<ul class="tree">
+{{for.each($request.nodeList as $nr => $node)}}
+    {{$li.class = 'bind indent indent-' + $indent}}
+    {{$li.data.url = server.url("{{/literal}}{{$backend.host}}{{literal}}") + 'FileSystem/List/Directory/'}}
+    {{$li.data.frontend.url = route.get($section.name + '-list-directory')}}
+    {{$li.data.name = $node.name}}
+    {{$li.data.target = "section[id='" + $id + "'] ul.tree section[data-dir='" + $li.data.name + "']"}}
+    {{$li.data.method = "replace"}}
+    {{node.manager.tree.directory($node, $li)}}
+{{/for.each}}
+</ul>
+{{/if}}
+{{/literal}}

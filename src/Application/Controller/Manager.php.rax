@@ -1,0 +1,149 @@
+{{$options = options()}}
+<?php
+namespace Domain\{{php.namespace.host($options.frontend.host)}}\Application\OllamaGui\Controller;
+
+use Raxon\App;
+use Raxon\Config;
+
+use Raxon\Exception\AuthorizationException;
+use Raxon\Exception\DirectoryCreateException;
+use Raxon\Module\Controller;
+use Raxon\Module\Dir;
+use Raxon\Module\File;
+
+use Exception;
+
+use Raxon\Exception\LocateException;
+use Raxon\Exception\UrlEmptyException;
+use Raxon\Exception\UrlNotExistException;
+use Raxon\Exception\ObjectException;
+use Raxon\Exception\FileWriteException;
+use Raxon\Module\Data;
+use Raxon\Module\Host;
+
+class Manager extends Controller {
+    const DIR = __DIR__ . DIRECTORY_SEPARATOR;
+
+
+    /**
+     * @throws Exception
+     */
+    public static function main(App $object){
+        $name = Manager::name(__FUNCTION__ , __CLASS__, '/');
+        $url = Manager::locate($object, $name);
+        /*
+        Manager::sse($object, [
+            'channel' => 'application:node:manager',
+            'event' => __FUNCTION__,
+            'type' => 'boot',
+            'url' => $url,
+            'class' => __CLASS__
+        ]);
+        */
+        return Manager::response($object, $url);
+    }
+
+    /**
+     * @throws DirectoryCreateException
+     * @throws FileWriteException
+     * @throws Exception
+     */
+    public static function sse(App $object)
+    {
+        d($object->request());
+        /*
+        if(!array_key_exists('channel', $options)){
+            return false;
+        }
+        if(!array_key_exists('event', $options)){
+            return false;
+        }
+        if(!array_key_exists('type', $options)){
+            return false;
+        }
+        if(!array_key_exists('url', $options)){
+            return false;
+        }
+        if(!array_key_exists('class', $options)){
+            return false;
+        }
+        $options['event'] = str_replace('/', '.', $options['event']);
+        $object->request('server.sent.event.channel', $options['channel']);
+        $object->request('server.sent.event.name', $options['event']);
+        $object->request('server.sent.event.type', $options['type']);
+        $object->request('server.sent.event.url', $options['url']);
+        $object->request('server.sent.event.class', $options['class']);
+        $posix_id = $object->config(Config::POSIX_ID);
+        $dir_server = $object->config('ramdisk.url') .
+            $posix_id .
+            $object->config('ds') .
+            'Server' .
+            $object->config('ds')
+        ;
+        $dir_sent = $dir_server .
+            'Sent' .
+            $object->config('ds')
+        ;
+        $dir_event = $dir_sent .
+            'Event' .
+            $object->config('ds')
+        ;
+        $url_server = $dir_event . $object->request('server.sent.event.channel') . '.' . $object->request('server.sent.event.name');
+        Dir::create($dir_event, Dir::CHMOD);
+        return File::write($url_server, gzencode(serialize($object), 9));
+        */
+    }
+
+    /**
+     * @throws LocateException
+     * @throws ObjectException
+     * @throws UrlEmptyException
+     * @throws UrlNotExistException
+     * @throws FileWriteException
+     */
+    public static function list_directory(App $object){
+        $name = Manager::name(__FUNCTION__ , __CLASS__, '/');
+        $url = Manager::locate($object, $name);
+        $object->config('response.url', $url);
+        return Manager::response($object, $url);
+    }
+
+    /**
+     * @throws LocateException
+     * @throws ObjectException
+     * @throws UrlEmptyException
+     * @throws UrlNotExistException
+     * @throws FileWriteException
+     */
+    public static function overview(App $object){
+        $name = Manager::name(__FUNCTION__ , __CLASS__, '/');
+        $url = Manager::locate($object, $name);
+        return Manager::response($object, $url);
+    }
+
+    /**
+     * @throws LocateException
+     * @throws ObjectException
+     * @throws UrlEmptyException
+     * @throws UrlNotExistException
+     * @throws FileWriteException
+     */
+    public static function list(App $object){
+        $name = Manager::name(__FUNCTION__ , __CLASS__, '/');
+        $url = Manager::locate($object, $name);
+        return Manager::response($object, $url);
+    }
+
+    /**
+     * @throws LocateException
+     * @throws ObjectException
+     * @throws UrlEmptyException
+     * @throws UrlNotExistException
+     * @throws FileWriteException
+     */
+    public static function address_bar(App $object){
+        $name = Manager::name(__FUNCTION__ , __CLASS__, '/');
+        $url = Manager::locate($object, $name);
+        return Manager::response($object, $url);
+    }
+}

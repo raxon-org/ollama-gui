@@ -1,0 +1,26 @@
+{{$frontend.host = options('frontend.host')}}{{$backend.host = options('backend.host')}}{{literal}}
+{{RAX}}
+{{$request = request()}}
+{{$request.method = 'replace'}}
+{{$request.target = html.target.create('section', ['id' => $request.section.id])}}
+{{$request.target += ' .list'}}
+<ul class="tabs">
+    <li class="active">Class (json)</li>
+    <li>Data</li>
+    <li>Import</li>
+    <li>Export</li>
+    <li>Expose (json)</li>
+    <li>Validate (json)</li>
+    <li>Create</li>
+    <li
+        data-backend-url="{{server.url(\"{{/literal}}{{$backend.host}}{{literal}}\")}}Node/{{$request.class}}?page=1&limit=1000"
+        data-frontend-url="{{route.get('application-ollama-manager-list-data')}}"
+    >
+        List
+    </li>
+    <li>Query</li>
+</ul>
+<div class="tabs-content">
+    <div class="active"><textarea>{{file.read(config('project.dir.node') + 'Object/' + $request.class + '.json')}}</textarea></div>
+</div>
+{{/literal}}

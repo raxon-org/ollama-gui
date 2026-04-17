@@ -1,0 +1,17 @@
+section[name="application-node-manager"] .body .list-menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: block;
+    width: 100%;
+    height: 20px;
+    overflow: hidden;
+}
+
+
+section[name="application-node-manager"] .body .list-menu li {
+    padding-left: 10px;
+    padding-right: 10px;
+    background: rgba(225, 225, 225, 1);
+    float: left;
+}

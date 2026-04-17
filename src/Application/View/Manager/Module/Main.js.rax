@@ -1,0 +1,81 @@
+{{$backend.host = options('backend.host')}}
+{{$frontend.host = options('frontend.host')}}{{literal}}
+//{{RAX}}
+import { input } from "/Application/Ollama/Module/Input.js";
+import { directory } from "/Application/Ollama/Module/Directory.js";
+import { file } from "/Application/Ollama/Module/File.js";
+import { head } from "/Application/Ollama/Module/Head.js";
+import { menu } from "/Application/Ollama/Module/Menu.js";
+import { root } from "/Module/Web.js";
+import { taskbar } from "/Application/Desktop/Module/Taskbar.js";
+import { task } from "/Application/Desktop/Module/Task.js";
+import { dialog } from "/Dialog/Module/Dialog.js";
+import { language, translation } from "/Module/Translation.js";
+import { version } from "/Module/Priya.js";
+import user from "/Module/User.js";
+require(
+[
+root() + 'Application/Ollama/Css/Indent.css?' + version(),
+root() + 'Application/Ollama/Css/Ollama.css?' + version(),
+root() + 'Dialog/Css/Dialog.css?' + version(),
+root() + 'Js/Dropzone/5.9.2/min/dropzone.min.css?' + version(),
+root() + 'Js/Dropzone/5.9.2/min/dropzone.min.js?' + version(),
+root() + 'Js/Showdown/2.1.0/showdown.min.js?' + version(),
+root() + 'Highlight/styles/default.min.css?' + version()
+],
+function(){
+user.refreshUrl("{{server.url(\"{{/literal}}{{$backend.host}}{{literal}}\")}}User/Refresh/Token/");
+//user.loginUrl("{{route.get('user-login')}}");
+language("{{language()}}");
+translation.import("{{raw|>translation.export('json-line')}}");
+file.data.set({
+    "route.backend.generate": "{{server.url(\"{{/literal}}{{$backend.host}}{{literal}}\")}}Ollama/Generate/",
+    "route.backend.tool": "{{server.url(\"{{/literal}}{{$backend.host}}{{literal}}\")}}Ollama/Tool/",
+    "route.backend.abort": "{{server.url(\"{{/literal}}{{$backend.host}}{{literal}}\")}}Ollama/Abort/",
+    "route.backend.sse": "{{server.url(\"{{/literal}}{{$backend.host}}{{literal}}\")}}Ollama/Sse/?user.key=" + user.get('key'),
+    "route.backend.queue": "{{server.url(\"{{/literal}}{{$backend.host}}{{literal}}\")}}Ollama/Queue/",
+    "route.backend.upload": "{{server.url(\"{{/literal}}{{$backend.host}}{{literal}}\")}}FileSystem/Upload/",
+    "route.backend.target": "{{config('project.dir.audio')}}Recorder/{{date('W-Y')}}/",
+    "route.backend.speech.to.text": "{{server.url(\"{{/literal}}{{$backend.host}}{{literal}}\")}}Audio/Speech/To/Text/",
+});
+taskbar.add("{{$section.name}}", "{{$id}}");
+menu.init();
+head.init();
+input.init("{{$id}}", {
+    'apache' : {},
+    'awk' : {},
+    'bash' : {},
+    'c' : {},
+    'cpp' : {},
+    'css' : {},
+    'dockerfile': {},
+    'excel': {},
+    'go': {},
+    'graphql': {},
+    'html' : {},
+    'http': {},
+    'javascript' : {},
+    'json' : {},
+    'markdown' : {},
+    'php' : {},
+    'php-template' : {},
+    'python' : {},
+    'raxon' : {},
+    'rust' : {},
+    'shell' : {},
+    'sql': {},
+    'wasm': {},
+    'x86asm': {},
+    'xml' : {},
+    'xquery' : {},
+    'yaml' : {},
+
+});
+dialog.init("{{$id}}");
+taskbar.active("{{$id}}");
+task.active({
+    "id": "{{$id}}",
+    "namespace": "{{$section.name}}"
+});
+});
+{{/literal}}
