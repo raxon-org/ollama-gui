@@ -304,7 +304,7 @@ input.init = (section_id, languages = {}) => {
                 "entity": {
                     "endpoint": endpoint,
                     "messages": messages,
-                    "tools": tools,
+                    // "tools": tools,
                     "model": model,
                     "think": think,
                     "options": {
