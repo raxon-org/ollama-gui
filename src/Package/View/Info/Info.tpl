@@ -5,4 +5,4 @@ Module: {{$request.module|uppercase.first}}
 Submodule: {{$request.submodule|uppercase.first}}
 {{/if}}
 
-Application: Audioplayer
+Application: Ollama:Gui

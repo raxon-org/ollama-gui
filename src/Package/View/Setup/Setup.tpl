@@ -1,7 +1,7 @@
-{{$register = Package.Raxon.OllamaGui:Init:register()}}
+{{$register = Package.Raxon.Ollama:Gui:Init:register()}}
 {{if(!is.empty($register))}}
-{{Package.Raxon.OllamaGui:Import:role.system()}}
+{{Package.Raxon.Ollama:Gui:Import:role.system()}}
 {{$flags = flags()}}
 {{$options = options()}}
-{{Package.Raxon.OllamaGui:Main:install($flags, $options)}}
+{{Package.Raxon.Ollama:Gui:Main:install($flags, $options)}}
 {{/if}}
