@@ -1,6 +1,6 @@
 <?php
 
-namespace Package\Raxon\OllamaGui\Controller;
+namespace Package\Raxon\Ollama\Gui\Controller;
 
 use Raxon\App;
 

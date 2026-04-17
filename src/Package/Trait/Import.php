@@ -1,5 +1,5 @@
 <?php
-namespace Package\Raxon\OllamaGui\Trait;
+namespace Package\Raxon\Ollama\Gui\Trait;
 
 use Raxon\Exception\DirectoryCreateException;
 use Raxon\Exception\FileWriteException;
