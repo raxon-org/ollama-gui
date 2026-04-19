@@ -53,6 +53,7 @@
                     <option value="qwen3-vl:8b">Qwen3-vl:8b (6.1 GB)</option>
                     <option value="qwen3-embedding">Qwen3-embedding:8b (4.7 GB)</option>
                     <option value="gpt-oss:20b">Gpt-oss:20b (14 GB)</option>
+                    <option value="gemma4:e4b">Gemma4:e4b (9.6 GB)</option>
                     <option value="gemma4:31b">Gemma4:31b (19 GB)</option>
                     <option value="llama3.1" selected="selected">Llama3.1 (4.7 GB)</option>
                     <option value="llama3.1:70b">Llama3.1:70b (40 GB)</option>
