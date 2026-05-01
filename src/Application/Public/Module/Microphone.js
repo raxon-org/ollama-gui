@@ -126,7 +126,6 @@ microphone.init = (section_id) => {
                 const data = new FormData();
                 data.append("file", file_wav);                                
                 data.append("directory", file.data.get('route.backend.target'));
-                console.log(file.data.get('route.backend.target'));
                 let url = file.data.get('route.backend.upload');
                 const token = user.token();
                 //speech to text engine and submit
