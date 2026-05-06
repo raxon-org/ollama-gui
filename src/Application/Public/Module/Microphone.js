@@ -147,6 +147,7 @@ microphone.init = (section_id) => {
                         }, (url, response) => {
                             if(response?.url && response?.name){
                                 request(response.url);
+                                console.log('request made');
                             } else {
                                 let prompt = select('#' + section_id + ' [name="prompt"]');
                                 prompt.val(response);
