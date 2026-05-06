@@ -145,11 +145,16 @@ microphone.init = (section_id) => {
                         {
                             "url": file.data.get('route.backend.target') + filename,
                         }, (url, response) => {
-                            let prompt = select('#' + section_id + ' [name="prompt"]');
-                            prompt.val(response);                            
-                            clip_label.textContent = response;
-                            let submit_button = select('#' + section_id + ' [name="submit"]');
-                            submit_button.trigger('click');
+                            if(response?.url && response?.name){
+                                request(response.url);
+                            } else {
+                                let prompt = select('#' + section_id + ' [name="prompt"]');
+                                prompt.val(response);
+                                clip_label.textContent = response;
+                                let submit_button = select('#' + section_id + ' [name="submit"]');
+                                submit_button.trigger('click');
+                            }
+
                         }
                     );                    
                 })
