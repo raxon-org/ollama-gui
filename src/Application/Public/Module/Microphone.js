@@ -146,6 +146,7 @@ microphone.init = (section_id) => {
                             "url": file.data.get('route.backend.target') + filename,
                         }, (url, response) => {
                             console.log(response);
+                            console.log(response?.url);
                             if(response?.url && response?.name){
                                 request(response.url);
                                 console.log('request made');
