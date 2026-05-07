@@ -147,8 +147,8 @@ microphone.init = (section_id) => {
                             "url": file.data.get('route.backend.target') + filename,
                         }, (url, response) => {
                             if(response?.url && response?.name){
-                                let menu = select('section[name="application-desktop-navigation"] nav');
-                                let item = menu.select('a[data-url="' + response.url + '"]');
+                                //let menu = select('section[name="application-desktop-navigation"] nav');
+                                let item = select('section[name="application-desktop-navigation"] a[data-url="' + response.url + '"]');
                                 console.log(item);
                                 if(item){
                                     item.trigger('click');
