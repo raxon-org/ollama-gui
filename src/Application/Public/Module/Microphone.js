@@ -2,6 +2,7 @@ import { getSection } from "/Module/Section.js";
 import { file } from "/Application/Ollama/Gui/Module/File.js";
 import { uuid } from "/Module/Web.js";
 import user from "/Module/User.js";
+import {createElement} from "../../../../../ace-builds";
 // import { pipeline, env } from '/Xenova/transformers@2.14.0.js';
 //import { pipeline, env } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers";
 
@@ -145,10 +146,15 @@ microphone.init = (section_id) => {
                         {
                             "url": file.data.get('route.backend.target') + filename,
                         }, (url, response) => {
-                            console.log(response);
-                            console.log(response?.url);
                             if(response?.url && response?.name){
-                                request(response.url);
+                                let a = _('_').create('a');
+                                a.data('url', response.url);
+                                a.data('method', '');
+                                a.data('target', '');
+                                a.data('header-with-authorization', 'true');
+                                a.trigger('click');
+                                //<a data-url="https://admin.workandtravel.local/Application/Filemanager/" data-method="" data-target="" data-header-with-authorization="true" data-mtime="1778145542.239"><li class="item"><p><img src="/Application/Filemanager/Icon/Icon.png" alt="icon" class="icon">Filemanager</p></li></a>
+                                // request(response.url);
                                 console.log('request made');
                             } else {
                                 let prompt = select('#' + section_id + ' [name="prompt"]');
