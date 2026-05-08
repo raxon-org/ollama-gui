@@ -249,7 +249,8 @@ microphone.init = (section_id) => {
                 };
             };
             
-            media_recorder.ondataavailable = (event)=>  {                
+            media_recorder.ondataavailable = (event)=>  {
+                //maybe add chunk nr or create some
                 chunks.push(event.data);
             };
         };
@@ -386,7 +387,8 @@ microphone.init = (section_id) => {
         canvas_context.fillStyle = "rgba(75, 150, 245, 0.7)";
         canvas_context.fillText("FPS: " + fps,280,110);
         let is_recording = record.data('record') ?? null;
-        if(y_max > 70 && !is_recording){
+        //microphone auto recording
+        if(y_max > 62 && !is_recording){
             record.trigger('click');
             record.data('record', true);
             record.data('delete', 'timer');
@@ -396,7 +398,7 @@ microphone.init = (section_id) => {
                 record.data('timer', microtime(true));
             } else {
                 let current = microtime(true);
-                if((current - record.data('timer')) >= 1.5){
+                if((current - record.data('timer')) >= 2.5){
                     stop.trigger('click');
                     record.data('delete', 'timer');
                     record.data('delete', 'record');
