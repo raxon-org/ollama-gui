@@ -83,6 +83,17 @@
                     "GET",
                     "POST"
                 ]
+            },
+            {
+                "name": "application-ollama-line-eraser",
+                "path": "\/Application\/Ollama\/Gui\/Line\/Eraser\/",
+                "host": "{{options('frontend.host')}}",
+                "controller": "Domain:{{app.controller.host(options('frontend.host'))}}:Application:Ollama:Gui:Controller:Manager:line.eraser",
+                "priority": 3009,
+                "method": [
+                    "GET",
+                    "POST"
+                ]
             }
         ]
     }
