@@ -152,9 +152,13 @@ microphone.init = (section_id) => {
                                 if(response.name === 'application-ollama-line-eraser'){
                                     console.log('##############################yes');
                                 } else {
+                                    let menu_start = select('section[name="application-desktop-navigation"] .start');
+                                    if(menu_start){
+                                        menu_start.trigger('click');
+                                    }
                                     let item = select('section[name="application-desktop-navigation"] a[data-url="' + response.url + '"]');
                                     if(item){
-                                       setTimeout(item.trigger('click'), 0);
+                                       item.trigger('click');
                                     }
                                 }
                             } else {
