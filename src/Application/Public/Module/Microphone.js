@@ -149,7 +149,7 @@ microphone.init = (section_id) => {
                             if(response?.url && response?.name){
                                 //let menu = select('section[name="application-desktop-navigation"] nav');
                                 console.log(response);
-                                if(response.nane === 'application-ollama-line-eraser'){
+                                if(response.name === 'application-ollama-line-eraser'){
                                     console.log('##############################yes');
                                 } else {
                                     let item = select('section[name="application-desktop-navigation"] a[data-url="' + response.url + '"]');
