@@ -150,6 +150,7 @@ microphone.init = (section_id) => {
                                 //let menu = select('section[name="application-desktop-navigation"] nav');
                                 console.log(response);
                                 if(response.nane === 'application-ollama-line-eraser'){
+                                    alert('fart');
                                     alert('Ollama Line Eraser');
                                 } else {
                                     let item = select('section[name="application-desktop-navigation"] a[data-url="' + response.url + '"]');
