@@ -149,14 +149,14 @@ microphone.init = (section_id) => {
                             if(response?.url && response?.name){
                                 //let menu = select('section[name="application-desktop-navigation"] nav');
                                 console.log(response);
-                                let item = select('section[name="application-desktop-navigation"] a[data-url="' + response.url + '"]');
-                                console.log(item);
-                                if(item){
-                                    item.trigger('click');
+                                if(response.nane === 'application-ollama-line-eraser'){
+                                    alert('Ollama Line Eraser');
+                                } else {
+                                    let item = select('section[name="application-desktop-navigation"] a[data-url="' + response.url + '"]');
+                                    if(item){
+                                       setTimeout(item.trigger('click'), 0);
+                                    }
                                 }
-                                //<a data-url="https://admin.workandtravel.local/Application/Filemanager/" data-method="" data-target="" data-header-with-authorization="true" data-mtime="1778145542.239"><li class="item"><p><img src="/Application/Filemanager/Icon/Icon.png" alt="icon" class="icon">Filemanager</p></li></a>
-                                // request(response.url);
-                                console.log('request made');
                             } else {
                                 let prompt = select('#' + section_id + ' [name="prompt"]');
                                 prompt.val(response);
