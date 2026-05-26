@@ -274,6 +274,27 @@ section[name="application-ollama-manager"] .body .input button[name="microphone"
     box-shadow: 2px 2px rgba(39, 170, 255, 0.5);
 }
 
+section[name="application-ollama-manager"] .body .input button[name="clear-queue"] {
+    border: 1px solid rgba(39, 170, 255, 1);
+    background: rgba(0, 0, 0, 0.5);
+    width: 40px;
+    height: 40px;
+    margin-left: 5px;
+    margin-top: 5px;
+    border-radius: 25px;
+    box-shadow: 2px 2px rgba(39, 170, 255, 0.5);
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+    color: rgba(255, 255, 255, 1);
+    position: relative;
+    left: 0px;
+    top: -75px;
+}
+
+section[name="application-ollama-manager"] .body .input button[name="clear-queue"]:hover {
+    color: rgba(39, 170, 255, 1);
+    box-shadow: 2px 2px rgba(39, 170, 255, 0.5);
+}
+
 section[name="application-ollama-manager"] .body .input button[name="clear"] {
     border: 1px solid rgba(39, 170, 255, 1);
     background: rgba(0, 0, 0, 0.5);
