@@ -41,6 +41,7 @@
                 <button type="button" name="abort" title="{{__('ollama.manager.abort')}}"><i class="fas fa-poop"></i></button>
                 <button type="button" name="microphone" title="{{__('ollama.manager.microphone')}}"><i class="fas fa-microphone"></i></button>
                 <button type="button" name="clear" title="{{__('ollama.manager.clear')}}"><i class="fas fa-broom"></i></button>
+                <button type="button" name="clear-queue" title="{{__('ollama.manager.clear.queue')}}"><i class="fas fa-trash"></i></button>
                 <select name="model">
                     <option value="codellama:70b">Codellama:70b (38 GB)</option>
                     <option value="gemma3:4b">Gemma3:4b (3.3 GB)</option>
