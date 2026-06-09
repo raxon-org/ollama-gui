@@ -189,11 +189,16 @@ input.init = (section_id, languages = {}) => {
             "uuid" : node?.uuid
         }
         request(file.data.get('route.backend.abort'), data, (url, response) => {
+            const eventSource = file.data.get('eventsource.list.' + node?.uuid);
+            eventSource.close();
+            file.data.delete('eventsource.list.' + node?.uuid);
             //close connection
+            /*
             const eventSource = new EventSource(file.data.get('route.backend.sse') + '&uuid=' + node?.uuid);
             eventSource.addEventListener('ping', (event) => {
-                eventSource.close();
+
             });
+             */
         })
     });
 
@@ -349,6 +354,9 @@ input.init = (section_id, languages = {}) => {
                 "blob": ''
             };
             file.data.set('node', response?.node);
+            let eventsource_list = file.data.get('eventsource.list') ?? {};
+            eventsource_list[response?.node?.uuid] = eventSource;
+            file.data.set('eventsource.list', eventsource_list);
             let counter = 0;
             let last_event_id = 0;
             let retry = 0;
