@@ -189,6 +189,11 @@ input.init = (section_id, languages = {}) => {
             "uuid" : node?.uuid
         }
         request(file.data.get('route.backend.abort'), data, (url, response) => {
+            //close connection
+            const eventSource = new EventSource(file.data.get('route.backend.sse') + '&uuid=' + node?.uuid);
+            eventSource.addEventListener('ping', (event) => {
+                eventSource.close();
+            });
         })
     });
 
