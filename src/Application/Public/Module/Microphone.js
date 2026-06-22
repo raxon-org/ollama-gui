@@ -180,6 +180,7 @@ microphone.init = (section_id) => {
                                 }
                             } else  if(!is.empty(response)){
                                 let prompt = select('#' + section_id + ' [name="prompt"]');
+                                console.log(response);
                                 prompt.val(response);
                                 clip_label.textContent = response;
                                 let submit_button = select('#' + section_id + ' [name="submit"]');
