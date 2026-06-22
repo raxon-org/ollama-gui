@@ -85,12 +85,11 @@ microphone.init = (section_id) => {
             };
 
             quit.onclick = function () {
-                media_recorder.stop();
-                if (media_recorder) {
-                    media_recorder.getTracks().forEach(
+                if (stream) {
+                    stream.getTracks().forEach(
                         track => track.stop()
                     );
-                    media_recorder = null;
+                    stream = null;
                 }
                 //close recorder or leave open ?
             }
