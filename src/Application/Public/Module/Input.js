@@ -234,6 +234,7 @@ input.init = (section_id, languages = {}) => {
                     '<div class="buttons">' +
                     '<button class="microphone-record">Record</button>' +
                     '<button class="microphone-stop">Stop</button>' +
+                    '<button class="microphone-quit">Quit</button>' +
                     '</div>' +
                     '<div class="sound-clips"></div>'
                 );

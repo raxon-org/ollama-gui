@@ -23,6 +23,7 @@ microphone.init = (section_id) => {
     }    
     const record = options.select('.microphone-record');
     const stop = options.select('.microphone-stop');
+    const quit = options.select('.microphone-quit');
     const sound_clips = options.select(".sound-clips");
     const canvas = options.select(".visualizer");
     const start = microtime(true);
@@ -61,7 +62,7 @@ microphone.init = (section_id) => {
         let chunks = [];
 
         let onSuccess = (stream) => {
-            const media_recorder = new MediaRecorder(stream);
+            let media_recorder = new MediaRecorder(stream);
 
             visualize(stream);
 
@@ -83,6 +84,12 @@ microphone.init = (section_id) => {
                 stop.disabled = true;                
             };
 
+            quit.onclick = function () {
+                media_recorder.stop();
+                delete media_recorder;
+                //close recorder or leave open ?
+            }
+            
             media_recorder.onstop = async function (event) {
                 let start = microtime(true);
                 console.log("Last data to read (after MediaRecorder.stop() called).");
