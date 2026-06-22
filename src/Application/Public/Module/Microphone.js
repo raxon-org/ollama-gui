@@ -89,7 +89,7 @@ microphone.init = (section_id) => {
                 delete media_recorder;
                 //close recorder or leave open ?
             }
-            
+
             media_recorder.onstop = async function (event) {
                 let start = microtime(true);
                 console.log("Last data to read (after MediaRecorder.stop() called).");
@@ -158,7 +158,13 @@ microphone.init = (section_id) => {
                                 console.log(response);
                                 if(response.name === 'application-ollama-line-eraser'){
                                     console.log('##############################yes');
-                                } else {
+                                    alert('Ollama Line Eraser');
+                                }
+                                if(response.name === 'application-ollama-word-eraser'){
+                                    console.log('##############################yes');
+                                    alert('Ollama word Eraser');
+                                }
+                                else {
                                     let menu_start = select('section[name="application-desktop-navigation"] .start');
                                     if(menu_start){
                                         menu_start.trigger('click');
@@ -168,7 +174,7 @@ microphone.init = (section_id) => {
                                        item.trigger('click');
                                     }
                                 }
-                            } else {
+                            } else  if(!is.empty(response)){
                                 let prompt = select('#' + section_id + ' [name="prompt"]');
                                 prompt.val(response);
                                 clip_label.textContent = response;
