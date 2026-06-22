@@ -86,7 +86,12 @@ microphone.init = (section_id) => {
 
             quit.onclick = function () {
                 media_recorder.stop();
-                delete media_recorder;
+                if (media_recorder) {
+                    media_recorder.getTracks().forEach(
+                        track => track.stop()
+                    );
+                    media_recorder = null;
+                }
                 //close recorder or leave open ?
             }
 
