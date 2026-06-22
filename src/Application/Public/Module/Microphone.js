@@ -178,7 +178,10 @@ microphone.init = (section_id) => {
                                        item.trigger('click');
                                     }
                                 }
-                            } else  if(!is.empty(response)){
+                            } else if(
+                                !is.empty(response) &&
+                                response !== ' '
+                            ){
                                 let prompt = select('#' + section_id + ' [name="prompt"]');
                                 console.log(response);
                                 prompt.val(response);
