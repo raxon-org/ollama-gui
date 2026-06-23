@@ -376,8 +376,10 @@ input.generate = (section_id, section, data) => {
         let code_partial_single_line = '';
         let is_thought = false;
         let content = section.select('.content');
-        if (content) {
+        if (content && !is.empty(prompt)) {
             content.html(content.html() + '<article><span class="prompt">' + prompt + '</span><pre id="response-' + response?.node?.uuid + '"></pre><a id="response-bottom-' + response?.node?.uuid + '"></a></article>');
+        } else if(content){
+            content.html(content.html() + '<article><pre id="response-' + response?.node?.uuid + '"></pre><a id="response-bottom-' + response?.node?.uuid + '"></a></article>');
         }
         let pre = section.select('#response-' + response?.node?.uuid);
         // pre.html(pre.html() +  + "\n\n");
