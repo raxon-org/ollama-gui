@@ -177,8 +177,8 @@ microphone.init = (section_id) => {
                                                 continue;
                                             } else {
                                                 console.log(messages[index]);
-                                                messages[index].content = messages[index].content.replace(/(\b\w+\b)/g, '');
-                                                console.log(messages[index]);
+                                                let content = messages[index].content.split(' ');
+                                                messages[index].content = content.slice(0, content.length - 1).join(' ');
                                                 break;
                                             }
                                             index--;
