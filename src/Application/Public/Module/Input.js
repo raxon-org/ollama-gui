@@ -349,6 +349,7 @@ input.init = (section_id, languages = {}) => {
 input.generate = (section_id, section, data) => {
     console.log(section_id);
     console.log(data);
+    const prompt = section.select('textarea[name="prompt"]').val();
     const token = user.token();
     header("Authorization", 'Bearer ' + token);
     const url_backend = file.data.get('route.backend.generate');
