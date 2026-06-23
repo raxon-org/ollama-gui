@@ -142,6 +142,13 @@ microphone.init = (section_id) => {
                 let url = file.data.get('route.backend.upload');
                 const token = user.token();
                 let messages;
+                let model;
+                let num_ctx;
+                let temperature;
+                let seed;
+                let endpoint;
+                let think;
+                let index;
                 //speech to text engine and submit
                 fetch((url), {
                     method: "POST",
@@ -164,13 +171,60 @@ microphone.init = (section_id) => {
                                 switch(response.name){
                                     case 'application-ollama-line-eraser':
                                         messages = file.data.get('messages.' + section_id);
-                                        console.log(messages);
-                                        console.log('##############################yes');
-                                        alert('Ollama Line Eraser');
+                                        messages = file.data.get('messages.' + section_id);
+                                        index = messages.length - 1;
+                                        while(index >= 0){
+                                            let message = messages[index];
+                                            if(message.role === 'user'){
+                                                continue;
+                                            } else {
+                                                let content = messages[index].content.split("\n");
+                                                if(content.length > 1){
+                                                    content = content.slice(0, content.length - 1).join("\n");
+                                                    messages[index].content = content;
+                                                    console.log(messages[index]);
+                                                }
+                                                break;
+                                            }
+                                            index--;
+                                        }
+                                        file.data.set('messages.' + section_id, messages);
+                                        // const prompt = section.select('textarea[name="prompt"]').val();
+                                        model = section.select('select[name="model"]').val();
+                                        // const url_backend = file.data.get('route.backend.generate');
+                                        num_ctx = parseInt(section.select('[name="context-size"]').val() ?? 2048);
+                                        temperature = parseFloat(section.select('[name="temperature"]').val() ?? 0.8);
+                                        seed = parseInt(section.select('[name="seed"]').val() ?? 0);
+                                        endpoint = section.select('[name="endpoint"]').val();
+                                        think = false;
+                                        if(section.select('[name="think"]')?.checked){
+                                            think = section.select('[name="think"]').val();
+                                            if(think === "true"){
+                                                think = true;
+                                            } else {
+                                                think = false;
+                                            }
+                                        }
+                                        data = {
+                                            "entity": {
+                                                "endpoint": endpoint,
+                                                "messages": messages,
+                                                // "tools": tools,
+                                                "model": model,
+                                                "think": think,
+                                                "options": {
+                                                    "stream": true,
+                                                    "num_ctx": num_ctx,
+                                                    "temperature": temperature,
+                                                    "seed": seed
+                                                }
+                                            }
+                                        }
+                                        input.generate(section_id, section, data);
                                     break;
                                     case 'application-ollama-word-eraser':
                                         messages = file.data.get('messages.' + section_id);
-                                        let index = messages.length - 1;
+                                        index = messages.length - 1;
                                         while(index >= 0){
                                             let message = messages[index];
                                             if(message.role === 'user'){
@@ -186,14 +240,14 @@ microphone.init = (section_id) => {
                                         }
                                         file.data.set('messages.' + section_id, messages);
                                         // const prompt = section.select('textarea[name="prompt"]').val();
-                                        const model = section.select('select[name="model"]').val();
+                                        model = section.select('select[name="model"]').val();
                                         // const url_backend = file.data.get('route.backend.generate');
 
-                                        const num_ctx = parseInt(section.select('[name="context-size"]').val() ?? 2048);
-                                        const temperature = parseFloat(section.select('[name="temperature"]').val() ?? 0.8);
-                                        const seed = parseInt(section.select('[name="seed"]').val() ?? 0);
-                                        const endpoint = section.select('[name="endpoint"]').val();
-                                        let think = false;
+                                        num_ctx = parseInt(section.select('[name="context-size"]').val() ?? 2048);
+                                        temperature = parseFloat(section.select('[name="temperature"]').val() ?? 0.8);
+                                        seed = parseInt(section.select('[name="seed"]').val() ?? 0);
+                                        endpoint = section.select('[name="endpoint"]').val();
+                                        think = false;
                                         if(section.select('[name="think"]')?.checked){
                                             think = section.select('[name="think"]').val();
                                             if(think === "true"){
