@@ -159,24 +159,29 @@ microphone.init = (section_id) => {
                         }, (url, response) => {
                             if(response?.url && response?.name){
                                 //let menu = select('section[name="application-desktop-navigation"] nav');
-                                console.log(response);
-                                if(response.name === 'application-ollama-line-eraser'){
-                                    console.log('##############################yes');
-                                    alert('Ollama Line Eraser');
-                                }
-                                if(response.name === 'application-ollama-word-eraser'){
-                                    console.log('##############################yes');
-                                    alert('Ollama word Eraser');
-                                }
-                                else {
-                                    let menu_start = select('section[name="application-desktop-navigation"] .start');
-                                    if(menu_start){
-                                        menu_start.trigger('click');
-                                    }
-                                    let item = select('section[name="application-desktop-navigation"] a[data-url="' + response.url + '"]');
-                                    if(item){
-                                       item.trigger('click');
-                                    }
+                                switch(response.name){
+                                    case 'application-ollama-line-eraser':
+                                        console.log('##############################yes');
+                                        alert('Ollama Line Eraser');
+                                    break;
+                                    case 'application-ollama-word-eraser':
+                                        console.log('##############################yes');
+                                        alert('Ollama word Eraser');
+                                    break;
+                                    case 'application-ollama-microphone-quit':
+                                        console.log('##############################yes');
+                                        alert('Ollama Microphone Quit');
+                                    break;
+                                    default:
+                                        let menu_start = select('section[name="application-desktop-navigation"] .start');
+                                        if(menu_start){
+                                            menu_start.trigger('click');
+                                        }
+                                        let item = select('section[name="application-desktop-navigation"] a[data-url="' + response.url + '"]');
+                                        if(item){
+                                            item.trigger('click');
+                                        }
+                                    break;
                                 }
                             } else if(
                                 !is.empty(response) &&
