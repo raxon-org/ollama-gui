@@ -2,6 +2,7 @@ import { getSection } from "/Module/Section.js";
 import { file } from "/Application/Ollama/Gui/Module/File.js";
 import { uuid } from "/Module/Web.js";
 import user from "/Module/User.js";
+import {input} from "./Input";
 //import {createElement} from "../../../../../ace-builds";
 // import { pipeline, env } from '/Xenova/transformers@2.14.0.js';
 //import { pipeline, env } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers";
@@ -183,11 +184,42 @@ microphone.init = (section_id) => {
                                             index--;
                                         }
                                         file.data.set('messages.' + section_id, messages);
-                                        let prompt = select('#' + section_id + ' [name="prompt"]');
-                                        prompt.val('continue');
-                                        clip_label.textContent = 'Erased last word...';
-                                        let submit_button = select('#' + section_id + ' [name="submit"]');
-                                        submit_button.trigger('click');
+                                        // const prompt = section.select('textarea[name="prompt"]').val();
+                                        const model = section.select('select[name="model"]').val();
+                                        // const url_backend = file.data.get('route.backend.generate');
+
+                                        const num_ctx = parseInt(section.select('[name="context-size"]').val() ?? 2048);
+                                        const temperature = parseFloat(section.select('[name="temperature"]').val() ?? 0.8);
+                                        const seed = parseInt(section.select('[name="seed"]').val() ?? 0);
+                                        const endpoint = section.select('[name="endpoint"]').val();
+                                        let think = false;
+                                        if(section.select('[name="think"]')?.checked){
+                                            think = section.select('[name="think"]').val();
+                                            if(think === "true"){
+                                                think = true;
+                                            } else {
+                                                think = false;
+                                            }
+                                        }
+                                        data = {
+                                            "entity": {
+                                                "endpoint": endpoint,
+                                                "messages": messages,
+                                                // "tools": tools,
+                                                "model": model,
+                                                "think": think,
+                                                "options": {
+                                                    "stream": true,
+                                                    "num_ctx": num_ctx,
+                                                    "temperature": temperature,
+                                                    "seed": seed
+                                                }
+                                            }
+                                        }
+                                        input.generate(section_id, section, data);
+                                        // clip_label.textContent = 'Erased last word...';
+                                        // let submit_button = select('#' + section_id + ' [name="submit"]');
+                                        // submit_button.trigger('click');
                                     break;
                                     case 'application-ollama-microphone-quit':
                                         quit.trigger('click');
