@@ -192,6 +192,9 @@ microphone.init = (section_id) => {
                                                             content_3 = content_3.slice(0, content_3.length - 1).join("\n");
                                                             content_2[i].textContent = content_3;
                                                             break;
+                                                        } else {
+                                                            content_2[i].textContent = "";
+                                                            break;
                                                         }
                                                     }
                                                 } else {
@@ -199,6 +202,8 @@ microphone.init = (section_id) => {
                                                     if(content_3.length > 1){
                                                         content_3 = content_3.slice(0, content_3.length - 1).join("\n");
                                                         content_2.textContent = content_3;
+                                                    } else {
+                                                        content_2.textContent = "";
                                                     }
                                                 }
                                                 break;
