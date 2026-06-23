@@ -169,7 +169,9 @@ microphone.init = (section_id) => {
                                     break;
                                     case 'application-ollama-word-eraser':
                                         messages = file.data.get('messages.' + section_id);
+                                        console.log(messages[messages.length - 1]);
                                         messages[messages.length - 1].content = messages[messages.length - 1].content.replace(/(\b\w+\b)/g, '');
+                                        console.log(messages[messages.length - 1]);
                                         file.data.set('messages.' + section_id, messages);
                                         let prompt = select('#' + section_id + ' [name="prompt"]');
                                         prompt.val('continue');
