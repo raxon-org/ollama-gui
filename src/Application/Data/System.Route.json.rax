@@ -94,6 +94,28 @@
                     "GET",
                     "POST"
                 ]
+            },
+            {
+                "name": "application-ollama-word-eraser",
+                "path": "\/Application\/Ollama\/Gui\/Word\/Eraser\/",
+                "host": "{{options('frontend.host')}}",
+                "controller": "Domain:{{app.controller.host(options('frontend.host'))}}:Application:Ollama:Gui:Controller:Manager:word.eraser",
+                "priority": 3009,
+                "method": [
+                    "GET",
+                    "POST"
+                ]
+            },
+            {
+                "name": "application-ollama-microphone-quit",
+                "path": "\/Application\/Ollama\/Gui\/Microphone\/Quit\/",
+                "host": "{{options('frontend.host')}}",
+                "controller": "Domain:{{app.controller.host(options('frontend.host'))}}:Application:Ollama:Gui:Controller:Manager:microphone.quit",
+                "priority": 3010,
+                "method": [
+                    "GET",
+                    "POST"
+                ]
             }
         ]
     }
