@@ -140,6 +140,7 @@ microphone.init = (section_id) => {
                 data.append("directory", file.data.get('route.backend.target'));
                 let url = file.data.get('route.backend.upload');
                 const token = user.token();
+                let messages;
                 //speech to text engine and submit
                 fetch((url), {
                     method: "POST",
@@ -161,16 +162,19 @@ microphone.init = (section_id) => {
                                 //let menu = select('section[name="application-desktop-navigation"] nav');
                                 switch(response.name){
                                     case 'application-ollama-line-eraser':
+                                        messages = file.data.get('messages.' + section_id);
+                                        console.log(messages);
                                         console.log('##############################yes');
                                         alert('Ollama Line Eraser');
                                     break;
                                     case 'application-ollama-word-eraser':
+                                        messages = file.data.get('messages.' + section_id);
+                                        console.log(messages);
                                         console.log('##############################yes');
                                         alert('Ollama word Eraser');
                                     break;
                                     case 'application-ollama-microphone-quit':
-                                        console.log('##############################yes');
-                                        alert('Ollama Microphone Quit');
+                                        quit.trigger('click');
                                     break;
                                     default:
                                         let menu_start = select('section[name="application-desktop-navigation"] .start');
