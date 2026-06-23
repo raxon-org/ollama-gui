@@ -311,7 +311,7 @@ input.init = (section_id, languages = {}) => {
                 }
             ];
             tools = [];
-            data = {                
+            data = {
                 "entity": {
                     "endpoint": endpoint,
                     "messages": messages,
@@ -327,7 +327,7 @@ input.init = (section_id, languages = {}) => {
                 }
             }
         } else {
-            data = {                
+            data = {
                 "entity" : {
                     "endpoint": endpoint,
                     "prompt": prompt,
@@ -347,6 +347,8 @@ input.init = (section_id, languages = {}) => {
 }
 
 input.generate = (section_id, section, data) => {
+    console.log(section_id);
+    console.log(data);
     const token = user.token();
     header("Authorization", 'Bearer ' + token);
     const url_backend = file.data.get('route.backend.generate');
