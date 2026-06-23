@@ -179,6 +179,7 @@ microphone.init = (section_id) => {
                                                 console.log(messages[index]);
                                                 let content = messages[index].content.split(' ');
                                                 messages[index].content = content.slice(0, content.length - 1).join(' ');
+                                                console.log(messages[index]);
                                                 break;
                                             }
                                             index--;
