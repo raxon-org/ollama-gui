@@ -176,13 +176,30 @@ microphone.init = (section_id) => {
                                         while(index >= 0){
                                             let message = messages[index];
                                             if(message.role === 'user'){
+                                                index--;
                                                 continue;
                                             } else {
                                                 let content = messages[index].content.split("\n");
                                                 if(content.length > 1){
                                                     content = content.slice(0, content.length - 1).join("\n");
                                                     messages[index].content = content;
-                                                    console.log(messages[index]);
+                                                }
+                                                let content_2 = section.select('.content pre');
+                                                if(is.nodeList(content_2)){
+                                                    for(let i = 0; i < content_2.length; i++){
+                                                        let content_3 = content_2[i].textContent.split("\n");
+                                                        if(content_3.length > 1){
+                                                            content_3 = content_3.slice(0, content_3.length - 1).join("\n");
+                                                            content_2[i].textContent = content_3;
+                                                            break;
+                                                        }
+                                                    }
+                                                } else {
+                                                    let content_3 = content_2.textContent.split("\n");
+                                                    if(content_3.length > 1){
+                                                        content_3 = content_3.slice(0, content_3.length - 1).join("\n");
+                                                        content_2.textContent = content_3;
+                                                    }
                                                 }
                                                 break;
                                             }
@@ -228,6 +245,7 @@ microphone.init = (section_id) => {
                                         while(index >= 0){
                                             let message = messages[index];
                                             if(message.role === 'user'){
+                                                index--;
                                                 continue;
                                             } else {
                                                 console.log(messages[index]);
