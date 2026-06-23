@@ -173,42 +173,36 @@ microphone.init = (section_id) => {
                                         messages = file.data.get('messages.' + section_id);
                                         messages = file.data.get('messages.' + section_id);
                                         index = messages.length - 1;
-                                        while(index >= 0){
+                                        while(index >= 0) {
                                             let message = messages[index];
-                                            if(message.role === 'user'){
-                                                index--;
-                                                continue;
-                                            } else {
-                                                let content = messages[index].content.split("\n");
-                                                if(content.length > 1){
-                                                    content = content.slice(0, content.length - 1).join("\n");
-                                                    messages[index].content = content;
-                                                }
-                                                let content_2 = section.select('.content pre');
-                                                if(is.nodeList(content_2)){
-                                                    for(let i = 0; i < content_2.length; i++){
-                                                        let content_3 = content_2[i].textContent.split("\n");
-                                                        if(content_3.length > 1){
-                                                            content_3 = content_3.slice(0, content_3.length - 1).join("\n");
-                                                            content_2[i].textContent = content_3;
-                                                            break;
-                                                        } else {
-                                                            content_2[i].textContent = "";
-                                                            break;
-                                                        }
-                                                    }
-                                                } else {
-                                                    let content_3 = content_2.textContent.split("\n");
-                                                    if(content_3.length > 1){
-                                                        content_3 = content_3.slice(0, content_3.length - 1).join("\n");
-                                                        content_2.textContent = content_3;
-                                                    } else {
-                                                        content_2.textContent = "";
-                                                    }
-                                                }
-                                                break;
+                                            let content = messages[index].content.split("\n");
+                                            if (content.length > 1) {
+                                                content = content.slice(0, content.length - 1).join("\n");
+                                                messages[index].content = content;
                                             }
-                                            index--;
+                                            let content_2 = section.select('.content pre');
+                                            if (is.nodeList(content_2)) {
+                                                for (let i = content_2.length - 1; i >= 0; i--) {
+                                                    let content_3 = content_2[i].textContent.split("\n");
+                                                    if (content_3.length > 1) {
+                                                        content_3 = content_3.slice(0, content_3.length - 1).join("\n");
+                                                        content_2[i].textContent = content_3;
+                                                        break;
+                                                    } else {
+                                                        content_2[i].textContent = "";
+                                                        break;
+                                                    }
+                                                }
+                                            } else {
+                                                let content_3 = content_2.textContent.split("\n");
+                                                if (content_3.length > 1) {
+                                                    content_3 = content_3.slice(0, content_3.length - 1).join("\n");
+                                                    content_2.textContent = content_3;
+                                                } else {
+                                                    content_2.textContent = "";
+                                                }
+                                            }
+                                            break;
                                         }
                                         file.data.set('messages.' + section_id, messages);
                                         // const prompt = section.select('textarea[name="prompt"]').val();
@@ -253,10 +247,30 @@ microphone.init = (section_id) => {
                                                 index--;
                                                 continue;
                                             } else {
-                                                console.log(messages[index]);
                                                 let content = messages[index].content.split(' ');
                                                 messages[index].content = content.slice(0, content.length - 1).join(' ');
-                                                console.log(messages[index]);
+                                                let content_2 = section.select('.content pre');
+                                                if (is.nodeList(content_2)) {
+                                                    for (let i = content_2.length - 1; i >= 0; i--) {
+                                                        let content_3 = content_2[i].textContent.split(" ");
+                                                        if (content_3.length > 1) {
+                                                            content_3 = content_3.slice(0, content_3.length - 1).join(" ");
+                                                            content_2[i].textContent = content_3;
+                                                            break;
+                                                        } else {
+                                                            content_2[i].textContent = "";
+                                                            break;
+                                                        }
+                                                    }
+                                                } else {
+                                                    let content_3 = content_2.textContent.split(" ");
+                                                    if (content_3.length > 1) {
+                                                        content_3 = content_3.slice(0, content_3.length - 1).join(" ");
+                                                        content_2.textContent = content_3;
+                                                    } else {
+                                                        content_2.textContent = "";
+                                                    }
+                                                }
                                                 break;
                                             }
                                             index--;
