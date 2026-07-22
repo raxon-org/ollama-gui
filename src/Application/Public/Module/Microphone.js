@@ -322,6 +322,7 @@ microphone.init = (section_id) => {
                                             menu_start.trigger('click');
                                         }
                                         let item = select('section[name="application-desktop-navigation"] a[data-url="' + response.url + '"]');
+                                        alert(response.url);
                                         if(item){
                                             item.trigger('click');
                                         }
