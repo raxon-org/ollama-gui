@@ -224,7 +224,7 @@ section[name="application-ollama-manager"] .body .input button[name="submit"] {
     color: rgba(255, 255, 255, 1);
     position: absolute;
     left: 850px;
-    top: 0px;
+    top: 50px;
 }
 
 section[name="application-ollama-manager"] .body .input button[name="submit"]:hover {
@@ -262,7 +262,7 @@ section[name="application-ollama-manager"] .body .input button[name="microphone"
     color: rgba(255, 255, 255, 1);
     position: absolute;
     left: 850px;
-    top: 50px;
+    top: 00px;
 }
 
 section[name="application-ollama-manager"] .body .input button[name="microphone"]:hover {
