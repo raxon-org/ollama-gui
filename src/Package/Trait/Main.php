@@ -1,9 +1,10 @@
 <?php
 namespace Package\Raxon\Ollama\Gui\Trait;
 
+use Package\Raxon\Desktop\Module\Navigation;
+use Package\Raxon\Account\Module\User;
 use Raxon\App;
 use Raxon\Config;
-
 use Raxon\Doctrine\Module\Database;
 use Raxon\Doctrine\Module\Entity;
 use Raxon\Exception\DirectoryCreateException;
@@ -202,14 +203,21 @@ trait Main {
         if($notification){
             echo $notification;
         }
-        $list = $this->user_list('ROLE_ADMIN');
-        $this->navigation_create($list);
+        //move user list to account and navigation to desktop ?
+        $list = User::list($object, User::ROLES_ALLOWED);
+        Navigation::create($object, $list, (object)[
+            'name' => self::NAME,
+            'route' => (object) [
+                'name' => self::ROUTE_NAME,
+            ]
+        ]);
     }
 
     /**
      * @throws ObjectException
      * @throws Exception
      */
+    /*
     public function navigation_create($list): void
     {
         $object = $this->object();
@@ -257,11 +265,13 @@ trait Main {
             }
         }
     }
+    */
 
     /**
      * @throws ObjectException
      * @throws Exception
      */
+    /*
     public function user_list($role=''): array
     {
         $object = $this->object();
@@ -301,5 +311,6 @@ trait Main {
         }
         return $list;
     }
+    */
 
 }
