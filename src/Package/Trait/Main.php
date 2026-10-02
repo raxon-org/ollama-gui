@@ -195,6 +195,13 @@ trait Main {
                 }                
             }
         }
+        $list = User::list($object, User::ROLES_ALLOWED);
+        Navigation::create($object, $list, (object)[
+            'name' => self::NAME,
+            'route' => (object) [
+                'name' => self::ROUTE_NAME,
+            ]
+        ]);
         $command = 'app install raxon/account -patch';
         Core::execute($object, $command, $output, $notification);
         if($output){
@@ -204,13 +211,7 @@ trait Main {
             echo $notification;
         }
         //move user list to account and navigation to desktop ?
-        $list = User::list($object, User::ROLES_ALLOWED);
-        Navigation::create($object, $list, (object)[
-            'name' => self::NAME,
-            'route' => (object) [
-                'name' => self::ROUTE_NAME,
-            ]
-        ]);
+
     }
 
     /**
