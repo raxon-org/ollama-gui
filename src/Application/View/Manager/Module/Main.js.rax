@@ -24,7 +24,20 @@ root() + 'Js/Showdown/2.1.0/showdown.min.js?' + version(),
 root() + 'Highlight/styles/default.min.css?' + version()
 ],
 function(){
-user.refreshUrl("{{server.url(\"{{/literal}}{{$backend.host}}{{literal}}\")}}User/Refresh/Token/");
+user.init({
+    "backend": {
+        "url": {
+            "current": "{{server.url(\"{{/literal}}{{$backend.host}}{{literal}}\")}}User/Current/",
+            "refresh": "{{server.url(\"{{/literal}}{{$backend.host}}{{literal}}\")}}User/Refresh/Token/",
+        }
+    },
+    "frontend": {
+        "url": {
+            "login": "{{server.url(\"{{/literal}}{{$frontend.host}}{{literal}}\")}}User/Login/",
+        }
+    }
+});
+//user.refreshUrl("{{server.url(\"{{/literal}}{{$backend.host}}{{literal}}\")}}User/Refresh/Token/");
 //user.loginUrl("{{route.get('user-login')}}");
 language("{{language()}}");
 translation.import("{{raw|>translation.export('json-line')}}");
