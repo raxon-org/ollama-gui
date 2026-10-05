@@ -3,5 +3,5 @@
 {{Package.Raxon.Ollama.Gui:Import:role.system()}}
 {{$flags = flags()}}
 {{$options = options()}}
-{{Package.Raxon.Ollama.Gui:Main:install($flags, $options)}}
+{{Package.Raxon.Ollama.Gui:Setup:install($flags, $options)}}
 {{/if}}

@@ -1,0 +1,27 @@
+{
+  "System":{
+    "Application":[
+      {
+        "name": "Ollama/Gui",
+        "display": {
+          "name": "Ollama"
+        },
+        "package": "raxon/{{$this.name|>string.lowercase}}",
+        "route": {
+          "name": "application-ollama-manager"
+        },
+        "frontend": "{{Package.Raxon.Ollama:Setup:install.frontend.get(options())}}",
+        "backend": "{{Package.Raxon.Ollama:Setup:install.backend.get(options())}}",
+        "directory": {
+          "application": "Application/{{$this.#parentNode.#parentNode.name}}/"
+        },
+        "source": {},
+        "method": null,
+        "target": null,
+        "description": "Ollama (local a.i.)",
+        "icon": "Application/{{$this.name}}/Icon/Icon.png",
+        "user": "{{Package.Raxon.ollama:Setup:user.list(flags(), options(), $this)}}"
+      }
+    ]
+  }
+}
