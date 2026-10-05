@@ -2,7 +2,7 @@
   "System":{
     "Application":[
       {
-        "name": "Ollama/Gui",
+        "name": "ollama-gui",
         "display": {
           "name": "Ollama"
         },
