@@ -3,11 +3,10 @@
     "Application":[
       {
         "name": "Ollama/Gui",
-        "package_name": "ollama-gui",
         "display": {
           "name": "Ollama Web"
         },
-        "package": "raxon/{{$this.package_name}}",
+        "package": "raxon/ollama-gui",
         "route": {
           "name": "application-ollama-manager"
         },
