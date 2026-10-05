@@ -2,11 +2,12 @@
   "System":{
     "Application":[
       {
-        "name": "ollama-gui",
+        "name": "Ollama/Gui",
+        "package_name": "ollama-gui",
         "display": {
           "name": "Ollama"
         },
-        "package": "raxon/{{$this.name|>string.lowercase}}",
+        "package": "raxon/{{$this.package_name}}",
         "route": {
           "name": "application-ollama-manager"
         },
