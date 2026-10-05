@@ -28,7 +28,6 @@ trait Setup {
             $options,
         );
         foreach($application_list as $application){
-            ddd($application);
             $this->install_api($options, $application);
             $this->install_application($options, $application);
             Navigation::create(
