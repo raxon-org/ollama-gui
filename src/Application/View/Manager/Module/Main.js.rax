@@ -37,8 +37,6 @@ user.init({
         }
     }
 });
-//user.refreshUrl("{{server.url(\"{{/literal}}{{$backend.host}}{{literal}}\")}}User/Refresh/Token/");
-//user.loginUrl("{{route.get('user-login')}}");
 language("{{language()}}");
 translation.import("{{raw|>translation.export('json-line')}}");
 file.data.set({
