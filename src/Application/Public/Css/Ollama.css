@@ -381,6 +381,7 @@ section[name="application-ollama-manager"] .body .content hr {
 
 section[name="application-ollama-manager"] .body .content article pre {
     margin: 0;
+    margin-bottom: 20px;
     padding: 0;
     white-space: pre-wrap;
     word-wrap: break-word;
