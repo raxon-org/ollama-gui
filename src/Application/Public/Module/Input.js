@@ -589,6 +589,10 @@ input.generate = (section_id, section, data) => {
                         }
                         file.data.set('messages.' + section_id, messages);
                     }
+                    data.entity.response.chunks.push(string);
+                    data.entity.response.blob += string;
+                    console.log(data);
+                    /*
                     if (string.substr(0, 3) === '```') {
                         code_partial_multi_line = string;
                     } else if (string.substr(0, 2) === '``') {
@@ -683,6 +687,7 @@ input.generate = (section_id, section, data) => {
                     input.tag_code_remove_class(select('code.yaml'), 'yaml');
                     input.tag_code_remove_class(select('code.svg'), 'svg');
                     input.tag_code_add_class(select('code'), '', 'language-bash');
+                     */
                     let a = section.select('#response-bottom-' + response?.node?.uuid);
                     if (a && is_think === false) {
                         a.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'start'})
