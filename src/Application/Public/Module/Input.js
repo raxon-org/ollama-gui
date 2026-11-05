@@ -1020,17 +1020,20 @@ input.render = (section_id, data) => {
     let content = section.select('.content');
     content.html('');
     let index;
+    let article = create('article');
     for (index=0; index < data?.entity?.messages.length; index++) {
         let message = data?.entity?.messages[index];
         if(message.role === 'user'){
             let user_message = create('span');
             user_message.html(message.content);
-            content.appendChild(user_message);
+            article.appendChild(user_message);
+            content.append(article);
+            article = create('article');
         }
         else if (message.role === 'assistant'){
             let assistant_message = create('pre');
             assistant_message.html(message.content);
-            content.appendChild(assistant_message);
+            article.appendChild(assistant_message);
         }
     }
 }
