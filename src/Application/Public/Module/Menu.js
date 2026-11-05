@@ -125,6 +125,7 @@ menu.upload = () => {
 
 menu.file = () => {
     const section = getSection(file.data.get('section.id'));
+    console.log(file.data.get('section.id'));
     console.log(section);
     if(!section){
         return;
