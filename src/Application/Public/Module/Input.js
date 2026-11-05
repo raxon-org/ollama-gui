@@ -1020,13 +1020,14 @@ input.render = (section_id, data) => {
     let content = section.select('.content');
     content.html('');
     let index;
-    let article = create('article');
-    content.append(article);
+
     for (index=0; index < data?.entity?.messages.length; index++) {
         let message = data?.entity?.messages[index];
         let user_message;
         let assistant_message;
+        let article;
         if(message.role === 'user'){
+            article = create('article');
             content.append(article);
             user_message = create('span');
             user_message.addClass('prompt');
@@ -1038,9 +1039,6 @@ input.render = (section_id, data) => {
             assistant_message.html(message.content);
             article.appendChild(assistant_message);
 
-        }
-        if(user_message && assistant_message){
-            article = create('article');
         }
     }
 }
