@@ -1021,14 +1021,13 @@ input.render = (section_id, data) => {
     content.html('');
     let index;
     let article = create('article');
+    content.append(article);
     for (index=0; index < data?.entity?.messages.length; index++) {
         let message = data?.entity?.messages[index];
         if(message.role === 'user'){
             let user_message = create('span');
             user_message.html(message.content);
             article.appendChild(user_message);
-            content.append(article);
-
         }
         else if (message.role === 'assistant'){
             let assistant_message = create('pre');
