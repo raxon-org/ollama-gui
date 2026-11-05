@@ -98,6 +98,12 @@ menu.file = (section_id) => {
             alert('demo enable...');
         });
     }
+    const menu_file_demo_write = menu.select('.menu-file-demo-write');
+    if(menu_file_demo_write){
+        menu_file_demo_write.on('click', (event) => {
+            alert('demo enable...');
+        });
+    }
     if(typeof _('dialog').click === 'function'){
         _('dialog').click(section, '.menu');
     }

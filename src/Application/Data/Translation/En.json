@@ -30,5 +30,6 @@
   "ollama.manager.clear.queue" : "Clear queue",
   "ollama.manager.options" : "Options",
   "ollama.manager.abort" : "Abort process",
-  "ollama.manager.demo" : "Demo file load"
+  "ollama.manager.demo" : "Demo file load",
+  "ollama.manager.demo.write" : "Demo file write"
 }
