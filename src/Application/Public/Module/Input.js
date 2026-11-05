@@ -1028,12 +1028,13 @@ input.render = (section_id, data) => {
             user_message.html(message.content);
             article.appendChild(user_message);
             content.append(article);
-            article = create('article');
+
         }
         else if (message.role === 'assistant'){
             let assistant_message = create('pre');
             assistant_message.html(message.content);
             article.appendChild(assistant_message);
+            article = create('article');
         }
     }
 }
