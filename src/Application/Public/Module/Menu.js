@@ -3,7 +3,6 @@ import { getSection } from "/Module/Section.js";
 import { taskbar } from "/Application/Desktop/Module/Taskbar.js";
 import create from "/Module/Create.js";
 import user from "/Module/User.js";
-//import {exception} from "/Module/Exception/Js/Exception.js";
 
 let menu = {};
 
@@ -126,14 +125,17 @@ menu.upload = () => {
 
 menu.file = () => {
     const section = getSection(file.data.get('section.id'));
+    console.log(section);
     if(!section){
         return;
     }
     const menu = section.select('.menu');
+    console.log(menu);
     if(!menu){
         return;
     }
     const li = menu.select('li.file');
+    console.log(li);
     if(!li){
         return;
     }
