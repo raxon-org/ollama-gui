@@ -335,6 +335,7 @@ input.init = (section_id, languages = {}) => {
                     }
                 }
             };
+
         }
         input.generate(section_id, section, data);
     });
@@ -419,6 +420,7 @@ input.generate = (section_id, section, data) => {
                 retry++;
             } else {
                 content.html(content.html() + '<hr>');
+                file.data.set('content.' + section_id, content.html());
                 //let microphone_button = select('#' + section_id + '[name="microphone"]');
                 //let is_active = microphone_button.data('is-active');
                 //if(is_active){
@@ -536,7 +538,8 @@ input.generate = (section_id, section, data) => {
                                 content = '</blockquote>' + content;
                             }
                             string += content;
-                        } else if (ping_data.message?.thinking) {
+                        }
+                        else if (ping_data.message?.thinking) {
                             let thinking = section.select('.thinking[data-uuid="' + response?.node?.uuid + '"]');
                             if (is.nodeList(thinking)) {
                                 thinking = thinking[thinking.count - 1];
@@ -619,6 +622,7 @@ input.generate = (section_id, section, data) => {
                     } else {
                         pre.html(input.converter(data.entity.response.blob));
                     }
+                    file.data.set('data.' + section_id, data);
                     input.tag_code_remove_class(select('code.apache'), 'apache');
                     input.tag_code_remove_class(select('code.awk'), 'awk');
                     input.tag_code_remove_class(select('code.bash'), 'bash');
@@ -847,6 +851,7 @@ input.generate = (section_id, section, data) => {
                     }
                     pre.html(input.converter(data.entity.response.blob));
                     content.html(content.html() + '<hr>');
+                    file.data.set('content.' + section_id, content.html());
                     eventSource.close();
                     input.tag_code_remove_class(select('code.apache'), 'apache');
                     input.tag_code_remove_class(select('code.awk'), 'awk');

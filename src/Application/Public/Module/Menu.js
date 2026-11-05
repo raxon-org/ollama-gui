@@ -101,6 +101,13 @@ menu.file = (section_id) => {
     const menu_file_demo_write = menu.select('.menu-file-demo-write');
     if(menu_file_demo_write){
         menu_file_demo_write.on('click', (event) => {
+            const data = file.data.get('data.' + section_id);
+            const content = file.data.get('content.' + section_id);
+            const messages = file.data.get('messages.' + section_id);
+            // const history
+            console.log(data);
+            console.log(content);
+            console.log(messages);
             alert('demo enable...');
         });
     }
