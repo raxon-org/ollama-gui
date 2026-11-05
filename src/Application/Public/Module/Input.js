@@ -370,15 +370,17 @@ input.generate = (section_id, section, data) => {
         let code_partial_multi_line = '';
         let code_partial_single_line = '';
         let is_thought = false;
-        let content = section.select('.content');
+        //let content = section.select('.content');
+        /*
         if (content && !is.empty(prompt)) {
             content.html(content.html() + '<article><span class="prompt">' + prompt + '</span><pre id="response-' + response?.node?.uuid + '"></pre><a id="response-bottom-' + response?.node?.uuid + '"></a></article>');
         } else if(content){
             content.html(content.html() + '<article><pre id="response-' + response?.node?.uuid + '"></pre><a id="response-bottom-' + response?.node?.uuid + '"></a></article>');
         }
-        let pre = section.select('#response-' + response?.node?.uuid);
+         */
+        //let pre = section.select('#response-' + response?.node?.uuid);
         // pre.html(pre.html() +  + "\n\n");
-        history.add(section, pre, prompt);
+        //history.add(section, pre, prompt);
         section.select('textarea[name="prompt"]').val('');
         section.select('textarea[name="prompt"]').focus();
         let a = section.select('#response-bottom-' + response?.node?.uuid);
@@ -386,26 +388,7 @@ input.generate = (section_id, section, data) => {
             a.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'start'})
             // a.scrollIntoView();
         }
-        let size = section.select('.footer .size');
-        if (size) {
-            size.html('Size: ' + 0);
-        }
-        let queue = section.select('.footer .queue');
-        if (queue) {
-            queue.html('Queue: ' + 0);
-        }
-        let amount = section.select('.footer .amount');
-        if (amount) {
-            amount.html('Tokens: ' + 0);
-        }
-        let speed = section.select('.footer .speed-size');
-        if (speed) {
-            speed.html('Speed: ' + '0.000 B/sec')
-        }
-        speed = section.select('.footer .speed-amount');
-        if (speed) {
-            speed.html('Speed: ' + '0.000 T/sec')
-        }
+        input.footer_init(section);
         eventSource.addEventListener('ping', (event) => {
             let pre = section.select('#response-' + response?.node?.uuid);
             let content = section.select('.content');
@@ -591,7 +574,7 @@ input.generate = (section_id, section, data) => {
                     }
                     data.entity.response.chunks.push(string);
                     data.entity.response.blob += string;
-                    console.log(data);
+                    input.render(section_id, data);
                     /*
                     if (string.substr(0, 3) === '```') {
                         code_partial_multi_line = string;
@@ -693,144 +676,19 @@ input.generate = (section_id, section, data) => {
                         a.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'start'})
                         // a.scrollIntoView();
                     }
-                    let amount = section.select('.footer .amount');
-                    if (amount) {
-                        amount.html('Tokens: ' + data?.entity?.response?.chunks?.length);
-                    }
-                    let size = section.select('.footer .size');
-                    if (size) {
-                        size.html('Size: ' + data?.entity?.response?.blob?.length);
-                    }
-                    let duration = section.select('.footer .duration');
-                    if (duration) {
-                        let time = parseFloat(microtime(true)) - parseFloat(start);
-                        let explode = time.toString().split('.');
-                        if (!explode[1]) {
-                            explode[1] = '000';
-                        }
-                        let day = Math.floor(time / 86400);
-                        let hour = Math.floor(time / 3600);
-                        if (hour >= 24) {
-                            hour = hour % 24;
-                        }
-                        let minute = Math.floor(time / 60);
-                        if (minute >= 60) {
-                            minute = minute % 60;
-                            hour++;
-                        }
-                        let second = Math.round(time % 60);
-                        if (second >= 60) {
-                            second = second % 60;
-                            minute++;
-                        }
-                        if (day > 0) {
-                            duration.html('Duration: ' + day + ' d, ' + hour + ' h, ' + minute + ' min, ' + second + ' sec');
-                        } else if (hour > 0) {
-                            duration.html('Duration: ' + hour + ' h, ' + minute + ' min, ' + second + ' sec');
-                        } else if (minute > 0) {
-                            duration.html('Duration: ' + minute + ' min, ' + second + ' sec');
-                        } else {
-                            duration.html('Duration: ' + second + ' sec');
-                        }
-                    }
-                    let speed = section.select('.footer .speed-size');
-                    if (speed) {
-                        let time = parseFloat(microtime(true)) - parseFloat(start);
-                        let explode = time.toString().split('.');
-                        let speed_size = data?.entity?.response?.blob?.length / time;
-                        speed_size = speed_size.toString().split('.');
-                        if (!speed_size[1]) {
-                            speed_size[1] = '000';
-                        }
-                        speed_size = speed_size[0] + '.' + speed_size[1].substring(0, 3);
-                        speed.html('Speed: ' + speed_size + ' B/sec');
-                    }
-                    speed = section.select('.footer .speed-amount');
-                    if (speed) {
-                        let time = parseFloat(microtime(true)) - parseFloat(start);
-                        let explode = time.toString().split('.');
-                        let speed_token = data?.entity?.response?.chunks?.length / time;
-                        speed_token = speed_token.toString().split('.');
-                        if (!speed_token[1]) {
-                            speed_token[1] = '000';
-                        }
-                        speed_token = speed_token[0] + '.' + speed_token[1].substring(0, 3);
-                        speed.html('Speed: ' + speed_token + ' T/sec, ');
-                    }
-                    let queue = section.select('.footer .queue');
-                    if (queue) {
-                        queue.html('Queue: ' + ping_data?.queue);
-                    }
-                    let sse_memory = section.select('.footer .sse-memory');
-                    if (sse_memory) {
-                        sse_memory.html('SSE memory: ' + ping_data?.memory);
-                    }
+                    input.footer_amount(section, data);
+                    input.footer_size(section, data);
+                    input.footer_duration(section, start);
+                    input.footer_speed_size(section, data, start);
+                    input.footer_speed_amount(section, data, start);
+                    input.footer_queue(section, ping_data);
+                    input.footer_sse_memory(section, ping_data);
                 } else {
-                    let duration = section.select('.footer .duration');
-                    if (duration) {
-                        let time = parseFloat(microtime(true)) - parseFloat(start);
-                        let explode = time.toString().split('.');
-                        if (!explode[1]) {
-                            explode[1] = '000';
-                        }
-                        let day = Math.floor(time / 86400);
-                        let hour = Math.floor(time / 3600);
-                        if (hour >= 24) {
-                            hour = hour % 24;
-                        }
-                        let minute = Math.floor(time / 60);
-                        if (minute >= 60) {
-                            minute = minute % 60;
-                            hour++;
-                        }
-                        let second = Math.round(time % 60);
-                        if (second >= 60) {
-                            second = second % 60;
-                            minute++;
-                        }
-                        if (day > 0) {
-                            duration.html('Duration: ' + day + ' d, ' + hour + ' h, ' + minute + ' min, ' + second + ' sec');
-                        } else if (hour > 0) {
-                            duration.html('Duration: ' + hour + ' h, ' + minute + ' min, ' + second + ' sec');
-                        } else if (minute > 0) {
-                            duration.html('Duration: ' + minute + ' min, ' + second + ' sec');
-                        } else {
-                            duration.html('Duration: ' + second + ' sec');
-                        }
-                        // duration.html('Duration: ' + explode[0] + '.' + explode[1].substring(0,3) + ' sec');
-                    }
-                    let speed = section.select('.footer .speed-size');
-                    if (speed) {
-                        let time = parseFloat(microtime(true)) - parseFloat(start);
-                        let explode = time.toString().split('.');
-                        let speed_size = data?.entity?.response?.blob?.length / time;
-                        speed_size = speed_size.toString().split('.');
-                        if (!speed_size[1]) {
-                            speed_size[1] = '000';
-                        }
-                        speed_size = speed_size[0] + '.' + speed_size[1].substring(0, 3);
-                        speed.html('Speed: ' + speed_size + ' B/sec');
-                    }
-                    speed = section.select('.footer .speed-amount');
-                    if (speed) {
-                        let time = parseFloat(microtime(true)) - parseFloat(start);
-                        let explode = time.toString().split('.');
-                        let speed_token = data?.entity?.response?.chunks?.length / time;
-                        speed_token = speed_token.toString().split('.');
-                        if (!speed_token[1]) {
-                            speed_token[1] = '000';
-                        }
-                        speed_token = speed_token[0] + '.' + speed_token[1].substring(0, 3);
-                        speed.html('Speed: ' + speed_token + ' T/sec, ');
-                    }
-                    let queue = section.select('.footer .queue');
-                    if (queue) {
-                        queue.html('Queue: ' + ping_data?.queue);
-                    }
-                    let sse_memory = section.select('.footer .sse-memory');
-                    if (sse_memory) {
-                        sse_memory.html('SSE memory: ' + ping_data?.memory);
-                    }
+                    input.footer_duration(section, start);
+                    input.footer_speed_size(section, data, start);
+                    input.footer_speed_amount(section, data, start);
+                    input.footer_queue(section, ping_data);
+                    input.footer_sse_memory(section, ping_data);
                 }
                 let elements = section.select('pre *');
                 if (is.nodeList(elements)) {
@@ -848,6 +706,8 @@ input.generate = (section_id, section, data) => {
                     ping_data?.done === true ||
                     ping_data?.finish === true
                 ) {
+                    input.render(section_id, data);
+                    /*
                     let pre = section.select('#response-' + response?.node?.uuid);
                     if (!pre) {
                         pre = create('pre');
@@ -857,6 +717,7 @@ input.generate = (section_id, section, data) => {
                     pre.html(input.converter(data.entity.response.blob));
                     content.html(content.html() + '<hr>');
                     file.data.set('content.' + section_id, content.html());
+                     */
                     eventSource.close();
                     input.tag_code_remove_class(select('code.apache'), 'apache');
                     input.tag_code_remove_class(select('code.awk'), 'awk');
@@ -1034,6 +895,127 @@ input.generate = (section_id, section, data) => {
             }
         });
     });
+}
+
+input.footer_sse_memory = (section, data) => {
+    let sse_memory = section.select('.footer .sse-memory');
+    if (sse_memory) {
+        sse_memory.html('SSE memory: ' + data?.memory);
+    }
+}
+
+input.footer_queue = (section, data) => {
+    let queue = section.select('.footer .queue');
+    if (queue) {
+        queue.html('Queue: ' + data?.queue);
+    }
+}
+
+input.footer_speed_amount = (section, data, start) => {
+    let speed = section.select('.footer .speed-amount');
+    if (speed) {
+        let time = parseFloat(microtime(true)) - parseFloat(start);
+        let explode = time.toString().split('.');
+        let speed_token = data?.entity?.response?.chunks?.length / time;
+        speed_token = speed_token.toString().split('.');
+        if (!speed_token[1]) {
+            speed_token[1] = '000';
+        }
+        speed_token = speed_token[0] + '.' + speed_token[1].substring(0, 3);
+        speed.html('Speed: ' + speed_token + ' T/sec, ');
+    }
+}
+
+input.footer_speed_size = (section, data, start) => {
+    let speed = section.select('.footer .speed-size');
+    if (speed) {
+        let time = parseFloat(microtime(true)) - parseFloat(start);
+        let explode = time.toString().split('.');
+        let speed_size = data?.entity?.response?.blob?.length / time;
+        speed_size = speed_size.toString().split('.');
+        if (!speed_size[1]) {
+            speed_size[1] = '000';
+        }
+        speed_size = speed_size[0] + '.' + speed_size[1].substring(0, 3);
+        speed.html('Speed: ' + speed_size + ' B/sec');
+    }
+}
+
+input.footer_duration = (section, start) => {
+    let duration = section.select('.footer .duration');
+    if (duration) {
+        let time = parseFloat(microtime(true)) - parseFloat(start);
+        let explode = time.toString().split('.');
+        if (!explode[1]) {
+            explode[1] = '000';
+        }
+        let day = Math.floor(time / 86400);
+        let hour = Math.floor(time / 3600);
+        if (hour >= 24) {
+            hour = hour % 24;
+        }
+        let minute = Math.floor(time / 60);
+        if (minute >= 60) {
+            minute = minute % 60;
+            hour++;
+        }
+        let second = Math.round(time % 60);
+        if (second >= 60) {
+            second = second % 60;
+            minute++;
+        }
+        if (day > 0) {
+            duration.html('Duration: ' + day + ' d, ' + hour + ' h, ' + minute + ' min, ' + second + ' sec');
+        } else if (hour > 0) {
+            duration.html('Duration: ' + hour + ' h, ' + minute + ' min, ' + second + ' sec');
+        } else if (minute > 0) {
+            duration.html('Duration: ' + minute + ' min, ' + second + ' sec');
+        } else {
+            duration.html('Duration: ' + second + ' sec');
+        }
+    }
+}
+
+input.footer_size = (section, data) => {
+    let size = section.select('.footer .size');
+    if (size) {
+        size.html('Size: ' + data?.entity?.response?.blob?.length);
+    }
+}
+
+input.footer_amount = (section, data) => {
+    let amount = section.select('.footer .amount');
+    if (amount) {
+        amount.html('Tokens: ' + data?.entity?.response?.chunks?.length);
+    }
+}
+
+input.footer_init = (section) => {
+    let size = section.select('.footer .size');
+    if (size) {
+        size.html('Size: ' + 0);
+    }
+    let queue = section.select('.footer .queue');
+    if (queue) {
+        queue.html('Queue: ' + 0);
+    }
+    let amount = section.select('.footer .amount');
+    if (amount) {
+        amount.html('Tokens: ' + 0);
+    }
+    let speed = section.select('.footer .speed-size');
+    if (speed) {
+        speed.html('Speed: ' + '0.000 B/sec')
+    }
+    speed = section.select('.footer .speed-amount');
+    if (speed) {
+        speed.html('Speed: ' + '0.000 T/sec')
+    }
+}
+
+input.render = (section_id, data) => {
+    console.log(section_id);
+    console.log(data);
 }
 
 
