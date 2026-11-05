@@ -1024,16 +1024,22 @@ input.render = (section_id, data) => {
     content.append(article);
     for (index=0; index < data?.entity?.messages.length; index++) {
         let message = data?.entity?.messages[index];
+        let user_message;
+        let assistant_message;
         if(message.role === 'user'){
-            let user_message = create('span');
+            content.append(article);
+            user_message = create('span');
             user_message.addClass('prompt');
             user_message.html(message.content);
             article.appendChild(user_message);
         }
         else if (message.role === 'assistant'){
-            let assistant_message = create('pre');
+            assistant_message = create('pre');
             assistant_message.html(message.content);
             article.appendChild(assistant_message);
+
+        }
+        if(user_message && assistant_message){
             article = create('article');
         }
     }
