@@ -1026,6 +1026,7 @@ input.render = (section_id, data) => {
         let message = data?.entity?.messages[index];
         if(message.role === 'user'){
             let user_message = create('span');
+            user_message.addClass('prompt');
             user_message.html(message.content);
             article.appendChild(user_message);
         }
