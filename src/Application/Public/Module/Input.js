@@ -1,10 +1,7 @@
-import { directory } from "/Application/Ollama/Gui/Module/Directory.js";
-import { exception } from "/Module/Exception.js";
 import { file } from "/Application/Ollama/Gui/Module/File.js";
 import { history } from "/Application/Ollama/Gui/Module/History.js";
 import { microphone } from "/Application/Ollama/Gui/Module/Microphone.js";
 import { getSection } from "/Module/Section.js";
-import { taskbar } from "/Application/Desktop/Module/Taskbar.js";
 import create from "/Module/Create.js";
 import user from "/Module/User.js";
 import hljs from '/Highlight/es/highlight.js';
@@ -38,7 +35,6 @@ import yaml from '/Highlight/es/languages/yaml.js';
 
 let input = {};
 
-
 input.init = (section_id, languages = {}) => {
     const section = getSection(section_id);
     if(!section){
@@ -48,9 +44,7 @@ input.init = (section_id, languages = {}) => {
     if(content){
         content.html('');
     }
-    let id_list = [];
     for(let language in languages){
-        let options = languages[language];
         switch(language){
             case 'apache':
                 hljs.registerLanguage('apache', apache);

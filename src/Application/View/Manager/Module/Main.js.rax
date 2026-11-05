@@ -50,8 +50,6 @@ file.data.set({
     "route.backend.speech.to.text": "{{server.url(\"{{/literal}}{{$backend.host}}{{literal}}\")}}Audio/Speech/To/Text/",
 });
 taskbar.add("{{$section.name}}", "{{$id}}");
-menu.init();
-head.init();
 input.init("{{$id}}", {
     'apache' : {},
     'awk' : {},
@@ -82,6 +80,8 @@ input.init("{{$id}}", {
     'yaml' : {},
 
 });
+menu.init("{{$id}}");
+head.init("{{$id}}");
 dialog.init("{{$id}}");
 taskbar.active("{{$id}}");
 task.active({

@@ -6,15 +6,14 @@ import user from "/Module/User.js";
 
 let menu = {};
 
-menu.init = () => {
-    menu.file();
-    menu.application();
-    menu.refresh();
-    menu.upload();
+menu.init = (section_id) => {
+    menu.file(section_id);
+    menu.application(section_id);
+    menu.refresh(section_id);
 }
 
-menu.application = () => {
-    const section = getSection(file.data.get('section.id'));
+menu.application = (section_id) => {
+    const section = getSection(section_id);
     if(!section){
         return;
     }
@@ -23,8 +22,8 @@ menu.application = () => {
     }
 }
 
-menu.refresh = () => {
-    const section = getSection(file.data.get('section.id'));
+menu.refresh = (section_id) => {
+    const section = getSection(section_id);
     if(!section){
         return;
     }
@@ -52,80 +51,8 @@ menu.refresh = () => {
     });
 }
 
-menu.upload = () => {
-    const section = getSection(file.data.get('section.id'));
-    if(!section){
-        return;
-    }
-    const menu = section.select('.menu-application-ollama-manager');
-    if(!menu){
-        return;
-    }
-    const upload = menu.select('.upload');
-    if(!upload){
-        return;
-    }
-    upload.on('click', (event) => {
-        const section = getSection(file.data.get('section.id'));
-        if(!section){
-            return;
-        }
-        const body = section.select('.body');
-        if(!body){
-            return;
-        }
-        const list = body.select('.list');
-        if(!list){
-            return;
-        }
-        const input = section.select('input[name="address"');
-        if(!input){
-            return;
-        }
-        let upload = body.select('.upload');
-        if(!upload){
-            list.addClass('has-upload');
-            upload = create('div', 'dropzone upload');
-            upload.attribute('id', 'upload-' + file.data.get('section.id'));
-            body.appendChild(upload);
-            let drop = new Dropzone(
-                '#' + upload.attribute('id'), {
-                    url: file.data.get('route.backend.upload'),
-                    maxFilesize: file.data.get('upload.max.filesize'),
-                    headers : {
-                        "Authorization" : "Bearer " + user.token()
-                    },
-                    params : {
-                        directory : input.val()
-                    }
-                }
-            );
-            drop.on("sending", function(file, xhr, formData) {
-                //xhr.setRequestHeader('Authorization', 'Bearer ' + user.token());
-                /*
-                exception.authorization(() => {
-
-                });
-                 */
-            });
-            drop.on("complete", function(file) {
-                const refresh = section.select('.refresh');
-                if(!refresh){
-                    return;
-                }
-                refresh.trigger('click');
-            });
-        } else {
-            list.removeClass('has-upload');
-            upload.remove();
-        }
-    });
-}
-
-
-menu.file = () => {
-    const section = getSection(file.data.get('section.id'));
-    console.log(file.data.get('section.id'));
+menu.file = (section_id) => {
+    const section = getSection(section_id);
     console.log(section);
     if(!section){
         return;
