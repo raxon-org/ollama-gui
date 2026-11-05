@@ -22,6 +22,7 @@
                     <li>Save as</li>
                     <li>Print</li>
                     */
+                    <li class="menu-file-demo">{{__('ollama.manager.demo')}}</li>
                     <li class="menu-file-exit">{{__('ollama.manager.exit')}}</li>
                 </ul>
             </div>

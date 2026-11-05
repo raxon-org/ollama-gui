@@ -162,6 +162,12 @@ menu.file = () => {
             section.remove();
         });
     }
+    const menu_file_demo = menu.select('.menu-file-demo');
+    if(menu_file_demo){
+        menu_file_demo.on('click', (event) => {
+            alert('demo enable...');
+        });
+    }
     if(typeof _('dialog').click === 'function'){
         _('dialog').click(section, '.menu');
     }

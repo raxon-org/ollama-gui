@@ -671,10 +671,10 @@ input.generate = (section_id, section, data) => {
                         assembly.addClass('language-x86asm');
                         hljs.highlightElement(assembly);
                     }
-                    let c = section.select('code.C');
+                    let c = section.select('code.c');
                     if (c) {
-                        c.removeClass('C');
-                        c.removeClass('language-C');
+                        c.removeClass('c');
+                        c.removeClass('language-c');
                         c.addClass('language-c');
                         hljs.highlightElement(c);
                     }
