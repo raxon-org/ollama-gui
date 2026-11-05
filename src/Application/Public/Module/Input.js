@@ -1016,6 +1016,22 @@ input.footer_init = (section) => {
 input.render = (section_id, data) => {
     console.log(section_id);
     console.log(data);
+    let section = getSection(section_id);
+    let content = section.select('.content');
+    let index;
+    for (index=0; index < data?.entity?.messages.length; index++) {
+        let message = data?.entity?.messages[index];
+        if(message.role === 'user'){
+            let user_message = create('span');
+            user_message.html(message.content);
+            content.appendChild(user_message);
+        }
+        else if (message.role === 'assistant'){
+            let assistant_message = create('pre');
+            assistant_message.html(message.content);
+            content.appendChild(assistant_message);
+        }
+    }
 }
 
 
