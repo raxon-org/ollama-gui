@@ -69,9 +69,11 @@ menu.file = (section_id) => {
     }
     const menu_file = menu.select('.menu-file');
     const menu_file_protector = menu.select('.menu-file-protector');
+    const dialog = menu.closest('.dialog');
     li.on('click', (event) => {
         if(menu_file) {
             menu_file.toggleClass('display-none');
+            menu_file.style.zIndex = dialog.style.zIndex + 1;
         }
         if(menu_file_protector){
             menu_file_protector.toggleClass('display-none');
