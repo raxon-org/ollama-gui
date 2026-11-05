@@ -53,17 +53,14 @@ menu.refresh = (section_id) => {
 
 menu.file = (section_id) => {
     const section = getSection(section_id);
-    console.log(section);
     if(!section){
         return;
     }
     const menu = section.select('.menu');
-    console.log(menu);
     if(!menu){
         return;
     }
     const li = menu.select('li.file');
-    console.log(li);
     if(!li){
         return;
     }
@@ -73,10 +70,11 @@ menu.file = (section_id) => {
     li.on('click', (event) => {
         if(menu_file) {
             menu_file.toggleClass('display-none');
-            menu_file.style.zIndex = dialog.style.zIndex + 1;
+            menu_file.style.zIndex = parseInt(dialog.style.zIndex) + 2;
         }
         if(menu_file_protector){
             menu_file_protector.toggleClass('display-none');
+            menu_file_protector.style.zIndex = parseInt(dialog.style.zIndex) + 1;
         }
     });
     if(menu_file_protector){
