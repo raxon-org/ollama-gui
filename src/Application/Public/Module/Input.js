@@ -470,7 +470,7 @@ input.generate = (section_id, section, data) => {
                     }
                 }
                 let string = '';
-                if (pre && (ping_data?.response || ping_data?.message || ping_data?.thinking)) {
+                if (ping_data?.response || ping_data?.message || ping_data?.thinking) {
                     if (ping_data?.response) {
                         //embedding calls
                         is_think = false;
