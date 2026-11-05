@@ -719,64 +719,6 @@ input.generate = (section_id, section, data) => {
                     file.data.set('content.' + section_id, content.html());
                      */
                     eventSource.close();
-                    input.tag_code_remove_class(select('code.apache'), 'apache');
-                    input.tag_code_remove_class(select('code.awk'), 'awk');
-                    input.tag_code_remove_class(select('code.bash'), 'bash');
-                    input.tag_code_remove_class(select('code.c'), 'c');
-                    input.tag_code_remove_class(select('code.cpp'), 'cpp');
-                    input.tag_code_remove_class(select('code.css'), 'css');
-                    input.tag_code_remove_class(select('code.dockerfile'), 'dockerfile');
-                    input.tag_code_remove_class(select('code.excel'), 'excel');
-                    input.tag_code_remove_class(select('code.go'), 'go');
-                    input.tag_code_remove_class(select('code.graphql'), 'graphql');
-                    input.tag_code_remove_class(select('code.html'), 'html');
-                    input.tag_code_remove_class(select('code.http'), 'http');
-                    input.tag_code_remove_class(select('code.javascript'), 'javascript');
-                    input.tag_code_remove_class(select('code.json'), 'json');
-                    input.tag_code_remove_class(select('code.markdown'), 'markdown');
-                    input.tag_code_remove_class(select('code.php'), 'php');
-                    input.tag_code_remove_class(select('code.php-template'), 'php-template');
-                    input.tag_code_remove_class(select('code.python'), 'python');
-                    input.tag_code_remove_class(select('code.raxon'), 'raxon');
-                    input.tag_code_remove_class(select('code.rust'), 'rust');
-                    input.tag_code_remove_class(select('code.shell'), 'shell');
-                    input.tag_code_remove_class(select('code.sh'), 'sh');
-                    input.tag_code_remove_class(select('code.sql'), 'sql');
-                    input.tag_code_remove_class(select('code.wasm'), 'wasm');
-                    input.tag_code_remove_class(select('code.x86asm'), 'x86asm');
-                    let assembly = section.select('code.assembly');
-                    if (assembly) {
-                        assembly.removeClass('assembly');
-                        assembly.removeClass('language-assembly');
-                        assembly.addClass('language-x86asm');
-                        hljs.highlightElement(assembly);
-                    }
-                    assembly = section.select('code.nasm');
-                    if (assembly) {
-                        assembly.removeClass('nasm');
-                        assembly.removeClass('language-nasm');
-                        assembly.addClass('language-x86asm');
-                        hljs.highlightElement(assembly);
-                    }
-                    assembly = section.select('code.asm');
-                    if (assembly) {
-                        assembly.removeClass('asm');
-                        assembly.removeClass('language-asm');
-                        assembly.addClass('language-x86asm');
-                        hljs.highlightElement(assembly);
-                    }
-                    let c = section.select('code.C');
-                    if (c) {
-                        c.removeClass('C');
-                        c.removeClass('language-C');
-                        c.addClass('language-c');
-                        hljs.highlightElement(c);
-                    }
-                    input.tag_code_remove_class(select('code.xml'), 'xml');
-                    input.tag_code_remove_class(select('code.xquery'), 'xquery');
-                    input.tag_code_remove_class(select('code.yaml'), 'yaml');
-                    input.tag_code_remove_class(select('code.svg'), 'svg');
-                    input.tag_code_add_class(select('code'), '', 'language-bash');
                     let a = section.select('#response-bottom-' + response?.node?.uuid);
                     if (a) {
                         a.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'start'})
@@ -1014,8 +956,6 @@ input.footer_init = (section) => {
 }
 
 input.render = (section_id, data) => {
-    console.log(section_id);
-    console.log(data);
     let section = getSection(section_id);
     let content = section.select('.content');
     content.html('');
@@ -1040,6 +980,64 @@ input.render = (section_id, data) => {
 
         }
     }
+    input.tag_code_remove_class(select('code.apache'), 'apache');
+    input.tag_code_remove_class(select('code.awk'), 'awk');
+    input.tag_code_remove_class(select('code.bash'), 'bash');
+    input.tag_code_remove_class(select('code.c'), 'c');
+    input.tag_code_remove_class(select('code.cpp'), 'cpp');
+    input.tag_code_remove_class(select('code.css'), 'css');
+    input.tag_code_remove_class(select('code.dockerfile'), 'dockerfile');
+    input.tag_code_remove_class(select('code.excel'), 'excel');
+    input.tag_code_remove_class(select('code.go'), 'go');
+    input.tag_code_remove_class(select('code.graphql'), 'graphql');
+    input.tag_code_remove_class(select('code.html'), 'html');
+    input.tag_code_remove_class(select('code.http'), 'http');
+    input.tag_code_remove_class(select('code.javascript'), 'javascript');
+    input.tag_code_remove_class(select('code.json'), 'json');
+    input.tag_code_remove_class(select('code.markdown'), 'markdown');
+    input.tag_code_remove_class(select('code.php'), 'php');
+    input.tag_code_remove_class(select('code.php-template'), 'php-template');
+    input.tag_code_remove_class(select('code.python'), 'python');
+    input.tag_code_remove_class(select('code.raxon'), 'raxon');
+    input.tag_code_remove_class(select('code.rust'), 'rust');
+    input.tag_code_remove_class(select('code.shell'), 'shell');
+    input.tag_code_remove_class(select('code.sh'), 'sh');
+    input.tag_code_remove_class(select('code.sql'), 'sql');
+    input.tag_code_remove_class(select('code.wasm'), 'wasm');
+    input.tag_code_remove_class(select('code.x86asm'), 'x86asm');
+    let assembly = section.select('code.assembly');
+    if (assembly) {
+        assembly.removeClass('assembly');
+        assembly.removeClass('language-assembly');
+        assembly.addClass('language-x86asm');
+        hljs.highlightElement(assembly);
+    }
+    assembly = section.select('code.nasm');
+    if (assembly) {
+        assembly.removeClass('nasm');
+        assembly.removeClass('language-nasm');
+        assembly.addClass('language-x86asm');
+        hljs.highlightElement(assembly);
+    }
+    assembly = section.select('code.asm');
+    if (assembly) {
+        assembly.removeClass('asm');
+        assembly.removeClass('language-asm');
+        assembly.addClass('language-x86asm');
+        hljs.highlightElement(assembly);
+    }
+    let c = section.select('code.c');
+    if (c) {
+        c.removeClass('c');
+        c.removeClass('language-c');
+        c.addClass('language-c');
+        hljs.highlightElement(c);
+    }
+    input.tag_code_remove_class(select('code.xml'), 'xml');
+    input.tag_code_remove_class(select('code.xquery'), 'xquery');
+    input.tag_code_remove_class(select('code.yaml'), 'yaml');
+    input.tag_code_remove_class(select('code.svg'), 'svg');
+    input.tag_code_add_class(select('code'), '', 'language-bash');
 }
 
 
