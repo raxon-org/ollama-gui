@@ -1021,14 +1021,13 @@ input.render = (section_id, data) => {
     content.html('');
     let index;
 
+    let article = create('article');
+    content.append(article);
     for (index=0; index < data?.entity?.messages.length; index++) {
         let message = data?.entity?.messages[index];
         let user_message;
         let assistant_message;
-        let article;
         if(message.role === 'user'){
-            article = create('article');
-            content.append(article);
             user_message = create('span');
             user_message.addClass('prompt');
             user_message.html(message.content);
