@@ -1,4 +1,5 @@
 import { file } from "/Application/Ollama/Gui/Module/File.js";
+import { uuid } from "/Module/Web.js";
 import { history } from "/Application/Ollama/Gui/Module/History.js";
 import { microphone } from "/Application/Ollama/Gui/Module/Microphone.js";
 import { getSection } from "/Module/Section.js";
@@ -344,7 +345,7 @@ input.init = (section_id, languages = {}) => {
 input.generate = (section_id, section, data) => {
     console.log(section_id);
     console.log(data);
-    //input.render(section_id, data);
+    input.render(section_id, data);
     const prompt = section.select('textarea[name="prompt"]').val();
     const token = user.token();
     header("Authorization", 'Bearer ' + token);
@@ -860,16 +861,18 @@ input.footer_init = (section) => {
 
 input.render = (section_id, data) => {
     let section = getSection(section_id);
+    let index;
+    let article;
     let content = section.select('.content');
     content.html('');
-    let index;
-    let article = create('article');
-    content.append(article);
     for (index=0; index < data?.entity?.messages.length; index++) {
         let message = data?.entity?.messages[index];
         let user_message;
         let assistant_message;
         if(message.role === 'user'){
+            article = create('article');
+            article.id = 'article-' + uuid();
+            content.append(article);
             user_message = create('span');
             user_message.addClass('prompt');
             user_message.html(message.content);
@@ -878,8 +881,9 @@ input.render = (section_id, data) => {
         else if (message.role === 'assistant'){
             assistant_message = create('pre');
             assistant_message.html(message.content);
-            article.appendChild(assistant_message);
-
+            if(article){
+                article.appendChild(assistant_message);
+            }
         }
     }
     /*
