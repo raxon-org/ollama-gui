@@ -954,7 +954,7 @@ input.improve = (string) => {
     console.log(test);
     if(
         test.length === 0 ||
-        test.length % 2 === 0
+        (test.length - 1) % 2 === 0
     ){
         return string;
     }
