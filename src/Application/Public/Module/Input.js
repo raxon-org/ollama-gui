@@ -863,7 +863,8 @@ input.render = (section_id, data) => {
     let content = section.select('.content');
     content.html('');
     let index;
-
+console.log('render');
+console.log(data);
     let article = create('article');
     content.append(article);
     for (index=0; index < data?.entity?.messages.length; index++) {
