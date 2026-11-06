@@ -859,6 +859,40 @@ input.footer_init = (section) => {
     }
 }
 
+input.cleaner = (node) => {
+    if(node){
+        node.removeClass('apache');
+        node.removeClass('awk');
+        node.removeClass('bash');
+        node.removeClass('c');
+        node.removeClass('cpp');
+        node.removeClass('css');
+        node.removeClass('dockerfile');
+        node.removeClass('excel');
+        node.removeClass('go');
+        node.removeClass('graphql');
+        node.removeClass('html');
+        node.removeClass('http');
+        node.removeClass('javascript');
+        node.removeClass('json');
+        node.removeClass('markdown');
+        node.removeClass('php');
+        node.removeClass('php-template');
+        node.removeClass('python');
+        node.removeClass('raxon');
+        node.removeClass('rust');
+        node.removeClass('shell');
+        node.removeClass('sh');
+        node.removeClass('sql');
+        node.removeClass('svg');
+        node.removeClass('wasm');
+        node.removeClass('x86asm');
+        node.removeClass('xml');
+        node.removeClass('xquery');
+        node.removeClass('yaml');
+    }
+}
+
 input.render = (section_id, data) => {
     let section = getSection(section_id);
     let index;
@@ -918,39 +952,17 @@ input.render = (section_id, data) => {
         hljs.highlightElement(c);
     }
     let code = section.select('code');
-    if(code){
-        code.removeClass('apache');
-        code.removeClass('awk');
-        code.removeClass('bash');
-        code.removeClass('c');
-        code.removeClass('cpp');
-        code.removeClass('css');
-        code.removeClass('dockerfile');
-        code.removeClass('excel');
-        code.removeClass('go');
-        code.removeClass('graphql');
-        code.removeClass('html');
-        code.removeClass('http');
-        code.removeClass('javascript');
-        code.removeClass('json');
-        code.removeClass('markdown');
-        code.removeClass('php');
-        code.removeClass('php-template');
-        code.removeClass('python');
-        code.removeClass('raxon');
-        code.removeClass('rust');
-        code.removeClass('shell');
-        code.removeClass('sh');
-        code.removeClass('sql');
-        code.removeClass('svg');
-        code.removeClass('wasm');
-        code.removeClass('x86asm');
-        code.removeClass('xml');
-        code.removeClass('xquery');
-        code.removeClass('yaml');
+    if(code && is.nodeList(code)) {
+        for (index = 0; index < code.count; index++) {
+            input.cleaner(code[index]);
+            hljs.highlightElement(code[index]);
+        }
+    } else if(code){
+        input.cleaner(code);
+        hljs.highlightElement(code);
     }
     /*
-    input.tag_code_remove_classselect('code.apache'), 'apache');
+    input.tag_code_remove_class(select('code.apache'), 'apache');
     input.tag_code_remove_class(select('code.awk'), 'awk');
     input.tag_code_remove_class(select('code.bash'), 'bash');
     input.tag_code_remove_class(select('code.c'), 'c');
