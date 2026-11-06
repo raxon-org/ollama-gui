@@ -881,7 +881,7 @@ input.render = (section_id, data) => {
         }
         else if (message.role === 'assistant'){
             assistant_message = create('pre');
-            assistant_message.html(message.content);
+            assistant_message.html(input.converter(message.content));
             if(article){
                 article.appendChild(assistant_message);
             }
