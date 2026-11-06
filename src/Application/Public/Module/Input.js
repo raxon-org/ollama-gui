@@ -341,6 +341,7 @@ input.init = (section_id, languages = {}) => {
             };
 
         }
+        content.removeClass('has-scroll');
         input.generate(section_id, section, data);
     });
 }
@@ -983,7 +984,6 @@ input.render = (section_id, data) => {
     if(!content.hasClass('has-scroll')){
         a.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'start'})
     }
-    content.removeClass('has-scroll');
     /*
     input.tag_code_remove_class(select('code.apache'), 'apache');
     input.tag_code_remove_class(select('code.awk'), 'awk');
