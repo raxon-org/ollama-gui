@@ -45,6 +45,10 @@ input.init = (section_id, languages = {}) => {
     if(content){
         content.html('');
     }
+    content.on('scroll', (event) => {
+        console.log(event);       
+        content.addClass('has-scroll');
+    })
     for(let language in languages){
         switch(language){
             case 'apache':
