@@ -889,7 +889,66 @@ input.render = (section_id, data) => {
             }
         }
     }
-    input.tag_code_remove_class(select('code.apache'), 'apache');
+    let assembly = section.select('code.assembly');
+    if (assembly) {
+        assembly.removeClass('assembly');
+        assembly.removeClass('language-assembly');
+        assembly.addClass('language-x86asm');
+        hljs.highlightElement(assembly);
+    }
+    assembly = section.select('code.nasm');
+    if (assembly) {
+        assembly.removeClass('nasm');
+        assembly.removeClass('language-nasm');
+        assembly.addClass('language-x86asm');
+        hljs.highlightElement(assembly);
+    }
+    assembly = section.select('code.asm');
+    if (assembly) {
+        assembly.removeClass('asm');
+        assembly.removeClass('language-asm');
+        assembly.addClass('language-x86asm');
+        hljs.highlightElement(assembly);
+    }
+    let c = section.select('code.c');
+    if (c) {
+        c.removeClass('c');
+        c.removeClass('language-c');
+        c.addClass('language-c');
+        hljs.highlightElement(c);
+    }
+    let node = select('code');
+    node.removeClass('apache');
+    node.removeClass('awk');
+    node.removeClass('bash');
+    node.removeClass('c');
+    node.removeClass('cpp');
+    node.removeClass('css');
+    node.removeClass('dockerfile');
+    node.removeClass('excel');
+    node.removeClass('go');
+    node.removeClass('graphql');
+    node.removeClass('html');
+    node.removeClass('http');
+    node.removeClass('javascript');
+    node.removeClass('json');
+    node.removeClass('markdown');
+    node.removeClass('php');
+    node.removeClass('php-template');
+    node.removeClass('python');
+    node.removeClass('raxon');
+    node.removeClass('rust');
+    node.removeClass('shell');
+    node.removeClass('sh');
+    node.removeClass('sql');
+    node.removeClass('wasm');
+    node.removeClass('x86asm');
+    node.removeClass('xml');
+    node.removeClass('xquery');
+    node.removeClass('yaml');
+    node.removeClass('svg');
+    /*
+    input.tag_code_remove_classselect('code.apache'), 'apache');
     input.tag_code_remove_class(select('code.awk'), 'awk');
     input.tag_code_remove_class(select('code.bash'), 'bash');
     input.tag_code_remove_class(select('code.c'), 'c');
@@ -947,6 +1006,7 @@ input.render = (section_id, data) => {
     input.tag_code_remove_class(select('code.yaml'), 'yaml');
     input.tag_code_remove_class(select('code.svg'), 'svg');
     input.tag_code_add_class(select('code'), '', 'language-bash');
+     */
 }
 
 input.improve = (string) => {
