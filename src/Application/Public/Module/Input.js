@@ -344,6 +344,7 @@ input.init = (section_id, languages = {}) => {
 input.generate = (section_id, section, data) => {
     console.log(section_id);
     console.log(data);
+    input.render(section_id, data);
     const prompt = section.select('textarea[name="prompt"]').val();
     const token = user.token();
     header("Authorization", 'Bearer ' + token);
@@ -980,6 +981,7 @@ input.render = (section_id, data) => {
 
         }
     }
+    /*
     input.tag_code_remove_class(select('code.apache'), 'apache');
     input.tag_code_remove_class(select('code.awk'), 'awk');
     input.tag_code_remove_class(select('code.bash'), 'bash');
@@ -1038,6 +1040,7 @@ input.render = (section_id, data) => {
     input.tag_code_remove_class(select('code.yaml'), 'yaml');
     input.tag_code_remove_class(select('code.svg'), 'svg');
     input.tag_code_add_class(select('code'), '', 'language-bash');
+     */
 }
 
 
