@@ -725,116 +725,18 @@ input.generate = (section_id, section, data) => {
                         a.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'start'})
                         //a.scrollIntoView();
                     }
-                    let amount = section.select('.footer .amount');
-                    if (amount) {
-                        amount.html('Tokens: ' + data?.entity?.response?.chunks?.length);
-                    }
-                    let size = section.select('.footer .size');
-                    if (size) {
-                        size.html('Size: ' + data?.entity?.response?.blob?.length + ' B');
-                    }
-                    let duration = section.select('.footer .duration');
-                    if (duration) {
-                        let time = parseFloat(microtime(true)) - parseFloat(start);
-                        let explode = time.toString().split('.');
-                        if (!explode[1]) {
-                            explode[1] = '000';
-                        }
-                        let day = Math.floor(time / 86400);
-                        let hour = Math.floor(time / 3600);
-                        if (hour >= 24) {
-                            hour = hour % 24;
-                        }
-                        let minute = Math.floor(time / 60);
-                        if (minute >= 60) {
-                            minute = minute % 60;
-                            hour++;
-                        }
-                        let second = Math.round(time % 60);
-                        if (second >= 60) {
-                            second = second % 60;
-                            minute++;
-                        }
-                        if (day > 0) {
-                            duration.html('Total: ' + day + ' d, ' + hour + ' h, ' + minute + ' min, ' + second + ' sec');
-                        } else if (hour > 0) {
-                            duration.html('Total: ' + hour + ' h, ' + minute + ' min, ' + second + ' sec');
-                        } else if (minute > 0) {
-                            duration.html('Total: ' + minute + ' min, ' + second + ' sec');
-                        } else {
-                            duration.html('Total: ' + second + ' sec');
-                        }
-                        // duration.html('Duration: ' + explode[0] + '.' + explode[1].substring(0,3) + ' sec');
-                    }
-                    let speed = section.select('.footer .speed-size');
-                    if (speed) {
-                        let time = parseFloat(microtime(true)) - parseFloat(start);
-                        let explode = time.toString().split('.');
-                        let speed_size = data?.entity?.response?.blob?.length / time;
-                        speed_size = speed_size.toString().split('.');
-                        if (!speed_size[1]) {
-                            speed_size[1] = '000';
-                        }
-                        speed_size = speed_size[0] + '.' + speed_size[1].substring(0, 3);
-                        speed.html('Speed: ' + speed_size + ' B/sec');
-                    }
-                    speed = section.select('.footer .speed-amount');
-                    if (speed) {
-                        let time = parseFloat(microtime(true)) - parseFloat(start);
-                        let explode = time.toString().split('.');
-                        let speed_token = data?.entity?.response?.chunks?.length / time;
-                        speed_token = speed_token.toString().split('.');
-                        if (!speed_token[1]) {
-                            speed_token[1] = '000';
-                        }
-                        speed_token = speed_token[0] + '.' + speed_token[1].substring(0, 3);
-                        speed.html('Speed: ' + speed_token + ' T/sec, ');
-                    }
-                    let queue = section.select('.footer .queue');
-                    if (queue) {
-                        queue.html('Queue: ' + ping_data?.queue);
-                    }
-                    let sse_memory = section.select('.footer .sse-memory');
-                    if (sse_memory) {
-                        sse_memory.html('SSE memory: ' + ping_data?.memory);
-                    }
+                    input.footer_amount(section, data);
+                    input.footer_size(section, data);
+                    input.footer_duration(section, start);
+                    input.footer_speed_size(section, data, start);
+                    input.footer_speed_amount(section, data, start);
+                    input.footer_queue(section, ping_data);
+                    input.footer_sse_memory(section, ping_data);
                     return;
                 }
             } else {
                 counter++;
-                let duration = section.select('.footer .duration');
-                if (duration) {
-                    let time = parseFloat(microtime(true)) - parseFloat(start);
-                    let explode = time.toString().split('.');
-                    if (!explode[1]) {
-                        explode[1] = '000';
-                    }
-                    let day = Math.floor(time / 86400);
-                    let hour = Math.floor(time / 3600);
-                    if (hour >= 24) {
-                        hour = hour % 24;
-                    }
-                    let minute = Math.floor(time / 60);
-                    if (minute >= 60) {
-                        minute = minute % 60;
-                        hour++;
-                    }
-                    let second = Math.round(time % 60);
-                    if (second >= 60) {
-                        second = second % 60;
-                        minute++;
-                    }
-                    if (day > 0) {
-                        duration.html('Duration: ' + day + ' d, ' + hour + ' h, ' + minute + ' min, ' + second + ' sec');
-                    } else if (hour > 0) {
-                        duration.html('Duration: ' + hour + ' h, ' + minute + ' min, ' + second + ' sec');
-                    } else if (minute > 0) {
-                        duration.html('Duration: ' + minute + ' min, ' + second + ' sec');
-                    } else {
-                        duration.html('Duration: ' + second + ' sec');
-                    }
-                    // duration.html('Duration: ' + explode[0] + '.' + explode[1].substring(0,3) + ' sec');
-                }
+                input.footer_duration(section, start);
             }
         });
     });
