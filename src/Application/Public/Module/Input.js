@@ -933,28 +933,34 @@ input.render = (section_id, data) => {
         hljs.highlightElement(assembly);
     }
     assembly = section.select('code.nasm');
-    if (assembly) {
+    if(is.nodeList(assembly)){
+        for(index=0; index < assembly.length; index++){
+            let element = assembly[index];
+            element.removeClass('nasm');
+            element.removeClass('language-nasm');
+            element.addClass('language-x86asm');
+        }
+    }
+    else if (assembly) {
         assembly.removeClass('nasm');
         assembly.removeClass('language-nasm');
         assembly.addClass('language-x86asm');
-        hljs.highlightElement(assembly);
     }
     assembly = section.select('code.asm');
-    if (assembly) {
+    if(is.nodeList(assembly)){
+        for(index=0; index < assembly.length; index++){
+            let element = assembly[index];
+            element.removeClass('asm');
+            element.removeClass('language-asm');
+            element.addClass('language-x86asm');
+        }
+    }
+    else if (assembly) {
         assembly.removeClass('asm');
         assembly.removeClass('language-asm');
         assembly.addClass('language-x86asm');
-        hljs.highlightElement(assembly);
-    }
-    let c = section.select('code.c');
-    if (c) {
-        c.removeClass('c');
-        c.removeClass('language-c');
-        c.addClass('language-c');
-        hljs.highlightElement(c);
     }
     let code = section.select('code');
-    console.log(code);
     if(code && is.nodeList(code)) {
         for (index = 0; index < code.length; index++) {
             input.cleaner(code[index]);
