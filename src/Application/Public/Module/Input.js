@@ -951,6 +951,7 @@ input.render = (section_id, data) => {
 
 input.improve = (string) => {
     let test = _('_').explode('```', string);
+    console.log(test);
     if(test.length % 2 === 0){
         return string;
     }
