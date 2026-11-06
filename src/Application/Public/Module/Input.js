@@ -897,6 +897,7 @@ input.render = (section_id, data) => {
     let section = getSection(section_id);
     let index;
     let article;
+    let uuid;
     let content = section.select('.content');
     content.html('');
     for (index=0; index < data?.entity?.messages.length; index++) {
@@ -905,7 +906,8 @@ input.render = (section_id, data) => {
         let assistant_message;
         if(message.role === 'user'){
             article = create('article');
-            article.id = 'article-' + uuid();
+            uuid = uuid();
+            article.id = 'article-' + uuid;
             article.addClass('article');
             content.append(article);
             user_message = create('span');
@@ -961,6 +963,13 @@ input.render = (section_id, data) => {
         input.cleaner(code);
         hljs.highlightElement(code);
     }
+    let a = section.select('#thinking-bottom-' + uuid);
+    if (!a) {
+        a = create('a');
+        a.id = 'thinking-bottom-' + uuid;
+        section.select('.content').appendChild(a);
+    }
+    a.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'start'})
     /*
     input.tag_code_remove_class(select('code.apache'), 'apache');
     input.tag_code_remove_class(select('code.awk'), 'awk');
