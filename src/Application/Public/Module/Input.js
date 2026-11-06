@@ -887,7 +887,6 @@ input.render = (section_id, data) => {
             }
         }
     }
-    /*
     input.tag_code_remove_class(select('code.apache'), 'apache');
     input.tag_code_remove_class(select('code.awk'), 'awk');
     input.tag_code_remove_class(select('code.bash'), 'bash');
@@ -945,8 +944,7 @@ input.render = (section_id, data) => {
     input.tag_code_remove_class(select('code.xquery'), 'xquery');
     input.tag_code_remove_class(select('code.yaml'), 'yaml');
     input.tag_code_remove_class(select('code.svg'), 'svg');
-    input.tag_code_add_class(select('code'), '', 'language-bash');
-     */
+    input.tag_code_add_class(select('code'), '', 'language-bash');     
 }
 
 
