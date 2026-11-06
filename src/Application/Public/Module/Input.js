@@ -958,7 +958,7 @@ input.improve = (string) => {
     ){
         return string;
     }
-    return string + '```';
+    return string + "\n" + '```';
 }
 
 input.replace_all = (string, find, replace) => {
