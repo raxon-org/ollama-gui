@@ -344,7 +344,7 @@ input.init = (section_id, languages = {}) => {
 input.generate = (section_id, section, data) => {
     console.log(section_id);
     console.log(data);
-    input.render(section_id, data);
+    //input.render(section_id, data);
     const prompt = section.select('textarea[name="prompt"]').val();
     const token = user.token();
     header("Authorization", 'Bearer ' + token);
@@ -863,8 +863,6 @@ input.render = (section_id, data) => {
     let content = section.select('.content');
     content.html('');
     let index;
-console.log('render');
-console.log(data);
     let article = create('article');
     content.append(article);
     for (index=0; index < data?.entity?.messages.length; index++) {
