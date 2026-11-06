@@ -46,7 +46,6 @@ input.init = (section_id, languages = {}) => {
         content.html('');
     }
     content.on('scroll', (event) => {
-        console.log(event);       
         content.addClass('has-scroll');
     })
     for(let language in languages){
@@ -981,7 +980,10 @@ input.render = (section_id, data) => {
         a.id = 'thinking-bottom-' + id;
         section.select('.content').appendChild(a);
     }
-    a.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'start'})
+    if(!content.hasClass('has-scroll')){
+        a.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'start'})
+    }
+    content.removeClass('has-scroll');
     /*
     input.tag_code_remove_class(select('code.apache'), 'apache');
     input.tag_code_remove_class(select('code.awk'), 'awk');
