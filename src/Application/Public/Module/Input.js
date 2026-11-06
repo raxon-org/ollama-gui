@@ -954,8 +954,9 @@ input.render = (section_id, data) => {
         hljs.highlightElement(c);
     }
     let code = section.select('code');
+    console.log(code);
     if(code && is.nodeList(code)) {
-        for (index = 0; index < code.count; index++) {
+        for (index = 0; index < code.length; index++) {
             input.cleaner(code[index]);
             hljs.highlightElement(code[index]);
         }
