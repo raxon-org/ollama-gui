@@ -872,6 +872,7 @@ input.render = (section_id, data) => {
         if(message.role === 'user'){
             article = create('article');
             article.id = 'article-' + uuid();
+            article.addClass('article');
             content.append(article);
             user_message = create('span');
             user_message.addClass('prompt');
