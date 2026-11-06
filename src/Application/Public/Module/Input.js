@@ -881,7 +881,9 @@ input.render = (section_id, data) => {
         }
         else if (message.role === 'assistant'){
             assistant_message = create('pre');
-            assistant_message.html(input.converter(message.content));
+            let content = input.improve(message.content);
+            content = input.converter(content);
+            assistant_message.html(content);
             if(article){
                 article.appendChild(assistant_message);
             }
@@ -944,9 +946,16 @@ input.render = (section_id, data) => {
     input.tag_code_remove_class(select('code.xquery'), 'xquery');
     input.tag_code_remove_class(select('code.yaml'), 'yaml');
     input.tag_code_remove_class(select('code.svg'), 'svg');
-    input.tag_code_add_class(select('code'), '', 'language-bash');     
+    input.tag_code_add_class(select('code'), '', 'language-bash');
 }
 
+input.improve = (string) => {
+    let test = _('_').explode('```', string);
+    if(test.length % 2 === 0){
+        return string;
+    }
+    return string + '```';
+}
 
 input.replace_all = (string, find, replace) => {
     return string.replace(new RegExp(find, 'g'), replace);
