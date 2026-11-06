@@ -509,7 +509,8 @@ input.generate = (section_id, section, data) => {
                         }
                         a.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'start'})
                         is_think = true;
-                    } else if (
+                    }
+                    else if (
                         ping_data?.message &&
                         (
                             ping_data?.message?.content ||
