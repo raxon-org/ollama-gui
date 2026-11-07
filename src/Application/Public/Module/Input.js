@@ -458,6 +458,28 @@ input.generate = (section_id, section, data) => {
                                     arguments: tool_call.function?.arguments,
                                 };
                                 request(url_tool, data_tool, (url, response_tool) => {
+                                    let messages = data.entity.messages ?? [];
+                                    let message_last = messages[messages.length - 1];
+                                    if (message_last && message_last.role === 'user') {
+                                        messages.pop();
+                                    }
+                                    if (message_last && message_last.role === 'system') {
+                                        message_last.content += "\nfunction: " + tool_call?.function?.name + "\nresult:\n```json\n" + JSON.stringify(response_tool) + "\n```\n";
+                                        let message_tool_calls = message_last.tool_calls ?? [];
+                                        message_tool_calls.push(tool_call);
+                                        // message_last.tool_calls = message_tool_calls;
+                                        messages[messages.length - 1] = message_last;
+                                    } else {
+                                        messages.push({
+                                            "role": "system",
+                                            "content": "function: " + tool_call?.function?.name + "\nresult:\n```json\n" + JSON.stringify(response_tool) + "\n```\n",
+                                            // "tool_calls": [tool_call],
+                                        });
+                                    }
+                                    data.entity.messages = messages;
+                                })
+                                /*
+                                request(url_tool, data_tool, (url, response_tool) => {
                                     let messages = file.data.get('messages.' + section_id) ?? [];
                                     let message_last = messages[messages.length - 1];
                                     if (message_last && message_last.role === 'user') {
@@ -479,6 +501,7 @@ input.generate = (section_id, section, data) => {
                                     file.data.set('messages.' + section_id, messages);
                                     data.entity.messages = messages;
                                 })
+                                 */
                             }
                             id_list.push(tool_call.id);
                         }
@@ -918,6 +941,7 @@ input.render = (section_id, data) => {
         let message = data?.entity?.messages[index];
         let user_message;
         let assistant_message;
+        let system_message;
         if(message.role === 'user'){
             article = create('article');
             id = uuid();
@@ -936,6 +960,15 @@ input.render = (section_id, data) => {
             assistant_message.html(content);
             if(article){
                 article.appendChild(assistant_message);
+            }
+        }
+        else if (message.role === 'system'){
+            system_message = create('pre');
+            let content = input.improve(message.content);
+            content = input.converter(content);
+            system_message.html(content);
+            if(article){
+                article.appendChild(system_message);
             }
         }
     }
