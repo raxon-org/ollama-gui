@@ -477,6 +477,7 @@ input.generate = (section_id, section, data) => {
                                         });
                                     }
                                     data.entity.messages = messages;
+                                    input.render(section_id, data);
                                 })
                                 /*
                                 request(url_tool, data_tool, (url, response_tool) => {
