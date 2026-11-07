@@ -402,7 +402,8 @@ input.generate = (section_id, section, data) => {
             let pre;
             if(is.nodeList(pre_list)){
                 pre = pre_list[pre_list.length - 1];
-            } elseif(pre_list){
+            }
+            else if(pre_list){
                 pre = pre_list;
             }
             let content = section.select('.content');
