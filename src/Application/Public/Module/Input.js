@@ -293,27 +293,26 @@ input.init = (section_id, languages = {}) => {
                 {
                     "type": "function",
                     "function": {
-                        "name": "directory_list",
-                        "description": "List a directory if it was ls",
+                        "name": "bash",
+                        "description": "bash command",
                         "parameters": {
                             "type": "object",
                             "properties": {
-                                "directory": {
+                                "command": {
                                     "type": "string",
-                                    "description": "A directory to list",
+                                    "description": "A command to execute in bash",
                                 },
                             },
-                            "required": ["directory"],
+                            "required": ["command"],
                         }
                     }
                 }
             ];
-            tools = [];
             data = {
                 "entity": {
                     "endpoint": endpoint,
                     "messages": messages,
-                    // "tools": tools,
+                    "tools": tools,
                     "model": model,
                     "think": think,
                     "options": {
