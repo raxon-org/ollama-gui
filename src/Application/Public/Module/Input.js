@@ -937,6 +937,7 @@ input.render = (section_id, data) => {
     let id;
     let content = section.select('.content');
     content.html('');
+    console.log(data);
     for (index=0; index < data?.entity?.messages.length; index++) {
         let message = data?.entity?.messages[index];
         let user_message;
