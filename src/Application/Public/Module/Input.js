@@ -460,9 +460,6 @@ input.generate = (section_id, section, data) => {
                                 request(url_tool, data_tool, (url, response_tool) => {
                                     let messages = data.entity.messages ?? [];
                                     let message_last = messages[messages.length - 1];
-                                    if (message_last && message_last.role === 'user') {
-                                        messages.pop();
-                                    }
                                     if (message_last && message_last.role === 'system') {
                                         message_last.content += "\nfunction: " + tool_call?.function?.name + "\nresult:\n```json\n" + JSON.stringify(response_tool) + "\n```\n";
                                         let message_tool_calls = message_last.tool_calls ?? [];
