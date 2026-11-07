@@ -321,7 +321,8 @@ input.init = (section_id, languages = {}) => {
                         "temperature": temperature,
                         "seed": seed
                     }
-                }
+                },
+                "uuid": uuid()
             }
         } else {
             data = {
@@ -336,7 +337,8 @@ input.init = (section_id, languages = {}) => {
                         "temperature": temperature,
                         "seed": seed
                     }
-                }
+                },
+                "uuid": uuid()
             };
 
         }
@@ -396,7 +398,13 @@ input.generate = (section_id, section, data) => {
         }
         input.footer_init(section);
         eventSource.addEventListener('ping', (event) => {
-            let pre = section.select('#response-' + response?.node?.uuid);
+            let pre_list = section.select('pre');
+            let pre;
+            if(is.nodeList(pre_list)){
+                pre = pre_list[pre_list.length - 1];
+            } elseif(pre_list){
+                pre = pre_list;
+            }
             let content = section.select('.content');
             let is_think = false;
             if (parseInt(event.lastEventId) >= parseInt(last_event_id)) {
@@ -430,7 +438,6 @@ input.generate = (section_id, section, data) => {
                     eventSource.close();
                     return;
                 }
-
                 if (pre && ping_data?.prompt) {
                     section.select('textarea[name="prompt"]').val('');
                     section.select('textarea[name="prompt"]').focus();
@@ -469,6 +476,7 @@ input.generate = (section_id, section, data) => {
                                         });
                                     }
                                     file.data.set('messages.' + section_id, messages);
+                                    data.entity.messages = messages;
                                 })
                             }
                             id_list.push(tool_call.id);
