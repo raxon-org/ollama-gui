@@ -370,6 +370,7 @@ input.generate = (section_id, section, data) => {
         let counter = 0;
         let last_event_id = 0;
         let retry = 0;
+        let id_list = [];
         let code_depth_multi_line = 0;
         let code_depth_single_line = 0;
         let code_partial_multi_line = '';
