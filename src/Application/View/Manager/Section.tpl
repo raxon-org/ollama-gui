@@ -100,6 +100,8 @@
                 <input type="number" min="0" max="9999999999" step="1" value="0" name="seed"><span class="seed-text"></span><br />
                 <label>Think</label><br />
                 <input type="checkbox" name="think" value="true"><br />
+                <label>Tools</label><br />
+                <input type="checkbox" name="tools" value="true"><br />
             </div>
         </div>
         <div class="footer">

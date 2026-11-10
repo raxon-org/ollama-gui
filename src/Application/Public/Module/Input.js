@@ -261,15 +261,24 @@ input.init = (section_id, languages = {}) => {
         const temperature = parseFloat(section.select('[name="temperature"]').val() ?? 0.8);
         const seed = parseInt(section.select('[name="seed"]').val() ?? 0);
         const endpoint = section.select('[name="endpoint"]').val();        
-        let think = false;
+        let is_think = false;
         if(section.select('[name="think"]')?.checked){
-            think = section.select('[name="think"]').val();
-            if(think === "true"){
-                think = true;
+            is_think = section.select('[name="think"]').val();
+            if(is_think === "true"){
+                is_think = true;
             } else {
-                think = false;
+                is_think = false;
             }
-        }            
+        }
+        let is_tools = false;
+        if(section.select('[name="tools"]')?.checked){
+            is_tools = section.select('[name="tools"]').val();
+            if(is_tools === "true"){
+                is_tools = true;
+            } else {
+                is_tools = false;
+            }
+        }
         let data;
         if(_('prototype').string.contains(endpoint, 'embed')){
             data = {
@@ -289,40 +298,58 @@ input.init = (section_id, languages = {}) => {
                 }
             );
             file.data.set('messages.' + section_id, messages);
-            let tools = [
-                {
-                    "type": "function",
-                    "function": {
-                        "name": "bash",
-                        "description": "bash command",
-                        "parameters": {
-                            "type": "object",
-                            "properties": {
-                                "command": {
-                                    "type": "string",
-                                    "description": "A command to execute in bash",
+            if(is_tools){
+                let tools = [
+                    {
+                        "type": "function",
+                        "function": {
+                            "name": "bash",
+                            "description": "bash command",
+                            "parameters": {
+                                "type": "object",
+                                "properties": {
+                                    "command": {
+                                        "type": "string",
+                                        "description": "A command to execute in bash",
+                                    },
                                 },
-                            },
-                            "required": ["command"],
+                                "required": ["command"],
+                            }
                         }
                     }
+                ];
+                data = {
+                    "entity": {
+                        "endpoint": endpoint,
+                        "messages": messages,
+                        "tools": tools,
+                        "model": model,
+                        "think": is_think,
+                        "options": {
+                            "stream": true,
+                            "num_ctx": num_ctx,
+                            "temperature": temperature,
+                            "seed": seed
+                        }
+                    },
+                    "uuid": uuid()
                 }
-            ];
-            data = {
-                "entity": {
-                    "endpoint": endpoint,
-                    "messages": messages,
-                    "tools": tools,
-                    "model": model,
-                    "think": think,
-                    "options": {
-                        "stream": true,
-                        "num_ctx": num_ctx,
-                        "temperature": temperature,
-                        "seed": seed
-                    }
-                },
-                "uuid": uuid()
+            } else {
+                data = {
+                    "entity": {
+                        "endpoint": endpoint,
+                        "messages": messages,
+                        "model": model,
+                        "think": is_think,
+                        "options": {
+                            "stream": true,
+                            "num_ctx": num_ctx,
+                            "temperature": temperature,
+                            "seed": seed
+                        }
+                    },
+                    "uuid": uuid()
+                }
             }
         } else {
             data = {
@@ -330,7 +357,7 @@ input.init = (section_id, languages = {}) => {
                     "endpoint": endpoint,
                     "prompt": prompt,
                     "model": model,
-                    "think": think,
+                    "think": is_think,
                     "options": {
                         "stream": true,
                         "num_ctx": num_ctx,
@@ -340,7 +367,6 @@ input.init = (section_id, languages = {}) => {
                 },
                 "uuid": uuid()
             };
-
         }
         content.removeClass('has-scroll');
         input.generate(section_id, section, data);
