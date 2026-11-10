@@ -455,6 +455,18 @@ input.generate = (section_id, section, data) => {
                 if (record) {
                     record.disabled = false;
                 }
+                if(pre){
+                    let article = pre.closest('article');
+                    let prompt = article.select('.prompt');
+                    prompt.html(prompt.html() + "<i class=\"fas fa-window-close\"></i>");
+                    let close = prompt.select('.fa-window-close');
+                    if(close){
+                        close.on('click', (event) => {
+                            let article = prompt.closest('article');
+                            article.remove();
+                        });
+                    }
+                }
                 eventSource.close();
                 return;
             }
@@ -462,6 +474,18 @@ input.generate = (section_id, section, data) => {
                 counter = 0;
                 let ping_data = JSON.parse(event.data);
                 if (ping_data?.finish && ping_data?.finish === true) {
+                    if(pre){
+                        let article = pre.closest('article');
+                        let prompt = article.select('.prompt');
+                        prompt.html(prompt.html() + "<i class=\"fas fa-window-close\"></i>");
+                        let close = prompt.select('.fa-window-close');
+                        if(close){
+                            close.on('click', (event) => {
+                                let article = prompt.closest('article');
+                                article.remove();
+                            });
+                        }
+                    }
                     eventSource.close();
                     return;
                 }
